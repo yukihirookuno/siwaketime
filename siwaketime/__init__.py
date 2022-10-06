@@ -7,6 +7,7 @@ app.config.from_object('siwaketime.config')
 
 db = SQLAlchemy(app)
 
+
 from siwaketime.views.users import user
 app.register_blueprint(user)
 
