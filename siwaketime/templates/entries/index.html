@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+{% block body %}
+<ul class="list-groupe list-groupe-flush">
+{% for entry in entries %}
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">{{ entry.title }}</h5>
+            <a href="{{ url_for('entry.show_entry', id=entry.id) }}" class="card-link">続きを読む</a>
+        </div>
+    </div>
+{% else %}
+    このwebアプリケーションの使い方
+
+    〰使い方を説明する文や図を実装する～
+{% endfor %}
+</ul>
+{% endblock %}
