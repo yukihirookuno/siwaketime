@@ -10,18 +10,25 @@ entry = Blueprint('entry', __name__)
 @entry.route('/')
 @login_required
 def show_entries():
-    entries = Entry.query.order_by(Entry.id.desc()).all()
+    user_id = session["id"]
+    username = session["username"]
+    entries = session.query(Entry).filter(Entry.user_id=="user_id").all
+    print (username)
     return render_template('entries/index.html', entries=entries)
 
 
 @entry.route('/entries', methods=['POST'])
 @login_required
 def add_entry():
+        entry_user_id = session["id"]
+        entry_username = session["username"]
         entry = Entry(
                 title = request.form['title'],
                 memo = request.form['memo'],
                 hour = request.form['hour'],
-                genre = request.form['genre']
+                genre = request.form['genre'],
+                user_id = entry_user_id,
+                username= entry_username
                 )
         db.session.add(entry)
         db.session.commit()

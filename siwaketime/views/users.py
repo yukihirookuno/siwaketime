@@ -8,6 +8,9 @@ from flask import Blueprint
 
 user = Blueprint('user', __name__)
 
+user_name = None
+user_id = None
+
 def login_required(view):
     @wraps(view)
     def inner(*args, **kwargs):
@@ -56,6 +59,9 @@ def signup():
 def login():
     """ログイン機能"""
     if request.method == "POST":
+        session.pop('logged_in' , None)
+        session.pop('id' , None)
+        session.pop('username' , None)
         username = request.form.get("username")
         password = request.form.get("password")
         if not request.form.get("username"):
@@ -67,6 +73,8 @@ def login():
         user = User.query.filter_by(username=username).first()
         if check_password_hash(user.hash, password):
             session['logged_in'] = True
+            session["id"] = user.id
+            session["username"] = user.username
             flash('ログインが完了しました')
             return redirect(url_for('entry.show_entries'))
     else:
@@ -77,7 +85,9 @@ def login():
 @login_required
 def logout():
     """Log user out"""
-    session.pop('logged_in',None)
+    session.pop('logged_in' , None)
+    session.pop('id' , None)
+    session.pop('username' , None)
     flash('ログアウトしました')
     return redirect(url_for('user.login'))
 
