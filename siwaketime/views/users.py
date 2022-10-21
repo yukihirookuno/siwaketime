@@ -1,6 +1,7 @@
 from flask import request, redirect, url_for, render_template, flash, session
-from siwaketime import app
+from flask import current_app as app
 from siwaketime import db
+from siwaketime.config import db_session
 from siwaketime.models.users import User
 from functools import wraps
 from werkzeug.security import check_password_hash, generate_password_hash
@@ -44,8 +45,8 @@ def signup():
                     username = username,
                     hash = generate_password_hash(password, method='sha256')
                     )   
-            db.session.add(user)
-            db.session.commit()
+            db_session.add(user)
+            db_session.commit()
             flash('ユーザーの登録が完了しました')
             return redirect (url_for('user.login'))
         except:
@@ -70,7 +71,7 @@ def login():
         elif not request.form.get("password"):
             flash('パスワードを入力してください')
             return redirect(url_for('user.login'))
-        user = User.query.filter_by(username=username).first()
+        user = db_session.query(User).filter(User.username==username).first()
         if check_password_hash(user.hash, password):
             session['logged_in'] = True
             session["id"] = user.id

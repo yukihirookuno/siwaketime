@@ -4,14 +4,32 @@
 {% for entry in entries %}
     <div class="card">
         <div class="card-body">
-            <h5 class="card-title">{{ entry.title }}</h5>
+            <h5 class="card-title">{{ entry.title }} {{ entry.hour }} {{ entry.genre }} {{ entry.created_at}}</h5>
             <a href="{{ url_for('entry.show_entry', id=entry.id) }}" class="card-link">続きを読む</a>
         </div>
     </div>
+        
 {% else %}
     このwebアプリケーションの使い方
 
     〰使い方を説明する文や図を実装する～
 {% endfor %}
-</ul>
+<table class="table">
+        <thead>
+            <tr>
+                <th scope="col">頑張り</th>
+                <th scope="col">遊び</th>
+                <th scope="col">無駄</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ sum_ganbari_time if  sum_ganbari_time != None else '0' }}</td>
+                <td>{{ sum_asobi_time if sum_asobi_time != None else '0'}}</td>
+                <td>{{ sum_muda_time if sum_muda_time !=None else '0'}}</td>
+            </tr>
+        </tbody>
+
 {% endblock %}
+

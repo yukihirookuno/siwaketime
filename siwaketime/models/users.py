@@ -1,6 +1,7 @@
 from siwaketime import db
+from siwaketime.config import Base
 
-class User(db.Model):
+class User(Base):
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     username = db.Column(db.String(30), nullable=False, unique=True)
