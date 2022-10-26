@@ -43,11 +43,13 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url_for('user.logout') }}">ログアウト</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('entry.date_entry') }}">date</a>
+                </li>
                 {% endif %}
             </ul>
         </div>
     </nav>
-
     {% for message in get_flashed_messages() %}
     <div class="alert alert-info" role="alert">
         {{ message }}

@@ -4,7 +4,7 @@ from datetime import datetime
 from siwaketime import db
 from siwaketime.config import JST, db_session
 from siwaketime.models.entries import Entry
-from siwaketime.views.users import login_required
+from siwaketime.views.users import login, login_required
 from sqlalchemy import func
 from flask import Blueprint
 
@@ -16,7 +16,7 @@ def show_entries():
     user_id = session["id"]
     username = session["username"]
     entries = db_session.query(Entry).order_by(Entry.id.desc()).filter(Entry.user_id==user_id).all()
-    sum_muda_time = db_session.query(func.sum(Entry.hour)).filter(Entry.user_id==user_id).group_by(Entry.genre).all()
+    sum_muda_time = db_session.query(func.sum(Entry.hour)).filter(Entry.user_id==user_id,Entry.genre=='無駄にしてしまった時間')
     for sum_muda_times in sum_muda_time:
         print(sum_muda_times[0])
     sum_ganbari_time = db_session.query(func.sum(Entry.hour)).filter(Entry.user_id==user_id,Entry.genre=='頑張った時間')
@@ -24,8 +24,23 @@ def show_entries():
         print(sum_ganbari_times[0])
     sum_asobi_time = db_session.query(func.sum(Entry.hour)).filter(Entry.user_id==user_id,Entry.genre=='趣味や遊びの時間')
     for sum_asobi_times in sum_asobi_time:
-        print(sum_ganbari_times[0])
-    return render_template('entries/index.html', entries=entries, sum_muda_time=sum_ganbari_times[0], sum_ganbari_time=sum_ganbari_times[0],sum_asobi_time=sum_asobi_times[0])
+        print(sum_asobi_times[0])
+    return render_template('entries/index.html', entries=entries, sum_muda_time=sum_muda_times[0], sum_ganbari_time=sum_ganbari_times[0], sum_asobi_time=sum_asobi_times[0])
+
+
+@entry.route('/entries/date', methods=['POST','GET'])
+@login_required
+def date_entry():
+    if request.method == 'POST':
+        user_id = session["id"]
+        date=request.form['date']
+        print(date)
+        entries_log = db_session.query(Entry).order_by(Entry.id.desc()).filter(Entry.user_id==user_id, Entry.created_at == date).all()
+        print (entries_log)
+        return redirect (url_for('entry.date_entry',entries_log=entries_log))
+    else:
+        return render_template('entries/date.html')
+    
 
 
 @entry.route('/entries', methods=['POST'])

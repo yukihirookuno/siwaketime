@@ -12,7 +12,7 @@ engine = create_engine(
     SQLALCHEMY_DATABASE_URI,
     convert_unicode = True,
     encoding="utf-8",
-    echo=True
+    echo=True,
     )
 
 db_session = scoped_session(

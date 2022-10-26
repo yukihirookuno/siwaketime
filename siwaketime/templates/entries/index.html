@@ -8,12 +8,8 @@
             <a href="{{ url_for('entry.show_entry', id=entry.id) }}" class="card-link">続きを読む</a>
         </div>
     </div>
-        
-{% else %}
-    このwebアプリケーションの使い方
-
-    〰使い方を説明する文や図を実装する～
 {% endfor %}
+</ul>
 <table class="table">
         <thead>
             <tr>
@@ -30,6 +26,5 @@
                 <td>{{ sum_muda_time if sum_muda_time !=None else '0'}}</td>
             </tr>
         </tbody>
-
 {% endblock %}
 
