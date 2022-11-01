@@ -12,6 +12,7 @@ user = Blueprint('user', __name__)
 user_name = None
 user_id = None
 
+
 def login_required(view):
     @wraps(view)
     def inner(*args, **kwargs):
@@ -41,10 +42,9 @@ def signup():
             flash('同じパスワードを入力してください')
             return redirect(url_for('user.signup'))
         try:
-            user = User(
-                    username = username,
-                    hash = generate_password_hash(password, method='sha256')
-                    )   
+            user = User()
+            user.username = username
+            user.hash = generate_password_hash(password, method='sha256')
             db_session.add(user)
             db_session.commit()
             flash('ユーザーの登録が完了しました')
@@ -72,12 +72,18 @@ def login():
             flash('パスワードを入力してください')
             return redirect(url_for('user.login'))
         user = db_session.query(User).filter(User.username==username).first()
+        if user == None:
+            flash('登録されていないユーザー名です。')
+            return render_template('users/login.html')
         if check_password_hash(user.hash, password):
             session['logged_in'] = True
-            session["id"] = user.id
+            session["id"] = user.user_id
             session["username"] = user.username
             flash('ログインが完了しました')
             return redirect(url_for('entry.show_entries'))
+        else:
+            flash('パスワードが異なります。')
+            return render_template('users/login.html')
     else:
         return render_template('users/login.html')
 

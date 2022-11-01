@@ -1,26 +1,5 @@
 {% extends "layout.html" %}
 {% block body %}
-    <form action="{{ url_for('entry.update_entry', id=entry.id) }}"method=post class=add-entry>
-        <div class="form-group">
-            <label for="InputTitle">タイトルを入力してください</label>
-            <input type="text" class="form-control" id="InputTitle" name=title value= {{entry.title}}>
-        </div>
-        <div class="form-group">
-            <label for="InputText">残したいメモがあれば、入力してください</label>
-            <textarea class="form-control" id="InputMemo" name=memo rows="3">{{ entry.memo | safe }}</textarea>
-        </div>
-        <div class="form-group">
-        <label for="InputMemo">使った時間を入力してください</label>
-        <input type="number" class="form-control mx-auto w-auto" id="InputHour" name="hour" placeholder="何時間？"  step="0.5" min="0" max="24" value={{entry.hour}} required>
-        </div>
-        <div class="form-group">
-        <label for="InputGenre">属性を選んでください</label>
-        <br>
-        <input type="radio" name="genre" id="InputGenre" value="頑張った時間" required>頑張った時間
-        <input type="radio" name="genre" id="InputGenre" value="趣味や遊びの時間">趣味や遊びの時間
-        <input type="radio" name="genre" id="InputGenre" value="無駄にしてしまった時間">無駄にしてしまったと思う時間
-        </div>
-        <button type="submit" class="btn btn-primary">更新</button>
-    </form>
+    <
         
 {% endblock %}
