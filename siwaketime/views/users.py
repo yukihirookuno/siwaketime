@@ -8,6 +8,7 @@ from werkzeug.security import check_password_hash, generate_password_hash
 from flask import Blueprint
 from datetime import datetime, date
 
+
 user = Blueprint('user', __name__)
 
 

@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
-
+import tweepy
 import siwaketime
 
 secret = os.urandom(24)
@@ -41,3 +41,10 @@ dotenv_path = join(dirname(__file__), ".env")
 
 FLASK_APP = os.environ.get('FLASK_APP')
 FLASK_ENV = os.environ.get('FLASK_ENV')
+
+
+api_key = os.environ.get('api_key')
+api_secret_key = os.environ.get('api_secret_key')
+access_token = os.environ.get('access_token')
+access_token_secret = os.environ.get('access_token_secret')
+bearer_token =os.environ.get('bearer_token')

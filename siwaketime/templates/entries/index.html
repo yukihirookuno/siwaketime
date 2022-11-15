@@ -1,7 +1,18 @@
 {% extends "layout.html" %}
 {% block body %}
+<head>
+    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</head>
+{% for url_result in url_list%}
+<blockquote class="twitter-tweet">
+<a href={{ url_result }}></a>
+</blockquote>
+{% endfor %}
 <table class="table">
 {% if entry != None %}
+    <div class="share_btn">
+        <a href="https://twitter.com/share?hashtags=仕訳時間&text={{ username }}さんは、{{ entry[0].date }}は{{ entry[3].gannbari_count }}時間努力して{{ entry[3].asobi_count}}時間遊んで、{{ entry[3].muda_count}}時間無駄にしてしまったようです。明日も忘れず記録しよう！"ref_src="twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    </div>
     <div class="btn-group">
         <form action="{{ url_for('entry.edit_entry', id=entry[0].entry_id, search_date=search_date) }}" method="get">
             <button type="submit" class="btn btn-secondary">{{ entry[0].date }}の記録を編集</button>

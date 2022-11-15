@@ -1,7 +1,7 @@
-from flask import request, redirect, url_for,render_template,flash,session
+from flask import request, redirect, url_for,render_template,flash,session,make_response,jsonify
 from flask import current_app as app
 from siwaketime import db
-from siwaketime.config import db_session, engine
+from siwaketime.config import db_session, engine,api_key,api_secret_key,access_token,access_token_secret,bearer_token
 from siwaketime.models.entries.entries import Entry
 from siwaketime.models.users import User
 from siwaketime.models.entries.genre_count import Genre_count
@@ -9,8 +9,9 @@ from siwaketime.models.entries.genres import Genre
 from siwaketime.models.entries.titles import Title
 from siwaketime.views.users import login_required
 from sqlalchemy import func
+import tweepy
 from flask import Blueprint
-from datetime import date, datetime
+
 
 entry = Blueprint('entry', __name__)
 
@@ -39,6 +40,20 @@ def count_reset():
     muda_counts = 0
 
 
+def search_tweets():
+    client = tweepy.Client(bearer_token = bearer_token, consumer_key = api_key, consumer_secret = api_secret_key, access_token = access_token, access_token_secret = access_token_secret)
+    QUERY = ["#仕訳時間 -is:retweet"]
+    MAX_RESULTS = 10
+    tweets = client.search_recent_tweets(query = QUERY, max_results = MAX_RESULTS)
+    tweet_url_list = []
+    n=0
+    if tweets is not None:
+        for tweet in tweets[n]:
+            tweet_url_list.append(f"https://twitter.com/user/status/{tweet.data['id']}")
+            n+=1
+    return tweet_url_list
+
+
 @entry.route('/')
 @login_required
 def show_entries():
@@ -63,10 +78,14 @@ def show_entries():
             Genre_count, Entry.entry_id==Genre_count.genre_counts_id
         ).filter(Entry.user_id==user_id, Entry.date==search_date
         ).all()
+    tweet_url_list=search_tweets()
     if session['check_recorded'] == 'ok':
         for entry in entries:
-            return render_template('entries/index.html',entry=entry, search_date=search_date)
-    else: return render_template('entries/index.html',entry=entry,search_date=search_date)
+            return render_template('entries/index.html',entry=entry, search_date=search_date,username=username,url_list=tweet_url_list) 
+    else: return render_template('entries/index.html',entry=entry,search_date=search_date,username=username,url_list=tweet_url_list)
+
+
+
 
 
 @entry.route('/entries', methods=['POST'])
