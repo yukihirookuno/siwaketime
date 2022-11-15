@@ -11,5 +11,5 @@ class User(Base):
         self.username = username
         self.hash = hash
 
-    def __repr__(self):
-        return '<User user_id:{} username:{} hash:{}>'.format(self.user_id, self.username, self.hash) 
+    #def __repr__(self):
+    #    return '<User user_id:{} username:{} hash:{}>'.format(self.user_id, self.username, self.hash) 

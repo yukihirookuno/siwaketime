@@ -6,11 +6,9 @@ from siwaketime.models.users import User
 from functools import wraps
 from werkzeug.security import check_password_hash, generate_password_hash
 from flask import Blueprint
+from datetime import datetime, date
 
 user = Blueprint('user', __name__)
-
-user_name = None
-user_id = None
 
 
 def login_required(view):
@@ -79,6 +77,8 @@ def login():
             session['logged_in'] = True
             session["id"] = user.user_id
             session["username"] = user.username
+            input_day = date.today().strftime('%Y/%m/%d')
+            session["date"] = input_day
             flash('ログインが完了しました')
             return redirect(url_for('entry.show_entries'))
         else:
@@ -95,6 +95,8 @@ def logout():
     session.pop('logged_in' , None)
     session.pop('id' , None)
     session.pop('username' , None)
+    session.pop('check_recorded', None)
+    session.pop('date', None)
     flash('ログアウトしました')
     return redirect(url_for('user.login'))
 

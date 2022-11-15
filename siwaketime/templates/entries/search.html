@@ -1,0 +1,10 @@
+{% block body %}
+<form action="{{ url_for('entry.search_date_entry') }}" method=post class=search-entry>
+    <div class="form-groupe">
+        <label for="InputSearch_date"> 記録を検索したい日にちを選んでください
+        <input type="date" name=search_date id="InputSearch_date">
+        </label>
+    </div>
+    <button type ="submit" class="btn btn-primary">検索する</button>
+</form>
+{% endblock %}

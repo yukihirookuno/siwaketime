@@ -41,10 +41,10 @@
                     <a class="nav-link" href="{{ url_for('entry.new_entry') }}">記録する</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('user.logout') }}">ログアウト</a>
+                    <a class="nav-link" href="{{ url_for('entry.search_entry') }}">他の日の記録を確認</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('entry.date_entry') }}">date</a>
+                    <a class="nav-link" href="{{ url_for('user.logout') }}">ログアウト</a>
                 </li>
                 {% endif %}
             </ul>

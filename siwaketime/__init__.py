@@ -13,6 +13,9 @@ def create_app():
     
     from siwaketime.views.entries import entry
     app.register_blueprint(entry)
+    
+    from siwaketime.config import Base, engine 
+    Base.metadata.create_all(engine)
 
     return app
 

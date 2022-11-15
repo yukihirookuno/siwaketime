@@ -5,9 +5,13 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 
+import siwaketime
+
 secret = os.urandom(24)
 SECRET_KEY = secret
-SQLALCHEMY_DATABASE_URI= 'sqlite:///siwaketime.db'
+
+basedir = os.path.abspath(os.path.dirname(__file__))
+SQLALCHEMY_DATABASE_URI= 'sqlite:///'+os.path.join(basedir, "siwaketime.db")
 
 engine = create_engine(
     SQLALCHEMY_DATABASE_URI,

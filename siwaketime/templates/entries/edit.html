@@ -1,5 +1,280 @@
 {% extends "layout.html" %}
 {% block body %}
-    <
+<form action="{{ url_for('entry.update_entry', id=entry.entry_id) }}" method=post class=add-entry>
+    <div class="form-groupe">
+        <label for="Inputdate">日付を入力
+        <input type="date" name=date id="Inputdate" value={{entry.date}}>
+        </label>
+    </div>
+    <div class="form-group">
+    <label for="Input_am12">0時--編集前の属性は{{genre.genre_am12}}</label><br>
+        <input type="radio" name=genre_am12 id="Input_Genre_am12" value="頑張り時間" required>頑張り時間
+        <input type="radio" name=genre_am12 id="Input_Genre_am12" value="遊び時間">遊び時間
+        <input type="radio" name=genre_am12 id="Input_Genre_am12" value="無駄時間">無駄時間
+        <input type="radio" name=genre_am12 id="Input_Genre_am12" value="無駄時間">基本時間
+    </div>
+    <div class="form-group">
+        <label for="Input_Title_am12"></label>
+        <textarea class="form-control" name=title_am12 rows ="1">{{ title.title_am12 }}</textarea>
+    </div>
+    <div class="form-group">
+    <label for="Input_am1">１時--編集前の属性は{{genre.genre_am1}}</label><br>
+        <input type="radio" name=genre_am1 id="Input_Genre_am1" value="頑張り時間" required>頑張り時間
+        <input type="radio" name=genre_am1 id="Input_Genre_am1" value="遊び時間">遊び時間
+        <input type="radio" name=genre_am1 id="Input_Genre_am1" value="無駄時間">無駄時間
+        <input type="radio" name=genre_am12 id="Input_Genre_am1" value="無駄時間">基本時間
+    </div>
+    <div class="form-group">
+        <label for="Input_Title_am1"></label>
+        <textarea class="form-control" name=title_am1 rows ="1">{{ title.title_am1 }}</textarea>
+    </div>
+    <div class="form-group">
+    <label for="Input_am2">2時--編集前の属性は{{genre.genre_am2}}</label><br>
+        <input type="radio" name=genre_am2 id="Input_Genre_am2" value="頑張り時間" required>頑張り時間
+        <input type="radio" name=genre_am2 id="Input_Genre_am2" value="遊び時間">遊び時間
+        <input type="radio" name=genre_am2 id="Input_Genre_am2" value="無駄時間">無駄時間
+        <input type="radio" name=genre_am12 id="Input_Genre_am2" value="無駄時間">基本時間
+    </div>
+    <div class="form-group">
+        <label for="Input_Title_am2"></label>
+        <textarea class="form-control" name=title_am2 rows ="1">{{ title.title_am2 }}</textarea>
+    </div>
+    <div class="form-group">
+    <label for="Input_am3">3時--編集前の属性は{{genre.genre_am3}}</label><br>
+        <input type="radio" name=genre_am3 id="Input_Genre_am3" value="頑張り時間" required>頑張り時間
+        <input type="radio" name=genre_am3 id="Input_Genre_am3" value="遊び時間">遊び時間
+        <input type="radio" name=genre_am3 id="Input_Genre_am3" value="無駄時間">無駄時間
+        <input type="radio" name=genre_am12 id="Input_Genre_am3" value="無駄時間">基本時間
+    </div>
+    <div class="form-group">
+        <label for="Input_Title_am3"></label>
+        <textarea class="form-control" name=title_am3 rows ="1">{{ title.title_am3 }}</textarea>
+    </div>
+    <div class="form-group">
+    <label for="Input_am3">4時--編集前の属性は{{genre.genre_am4}}</label><br>
+        <input type="radio" name=genre_am4 id="Input_Genre_am4" value="頑張り時間" required>頑張り時間
+        <input type="radio" name=genre_am4 id="Input_Genre_am4" value="遊び時間">遊び時間
+        <input type="radio" name=genre_am4 id="Input_Genre_am4" value="無駄時間">無駄時間
+        <input type="radio" name=genre_am12 id="Input_Genre_am4" value="無駄時間">基本時間
+    </div>
+    <div class="form-group">
+        <label for="Input_Title_am4"></label>
+        <textarea class="form-control" name=title_am4 rows ="1">{{ title.title_am4 }}</textarea>
+    </div>
+    <div class="form-group">
+    <label for="Input_am3">5時--編集前の属性は{{genre.genre_am5}}</label><br>
+        <input type="radio" name=genre_am5 id="Input_Genre_am5" value="頑張り時間" required>頑張り時間
+        <input type="radio" name=genre_am5 id="Input_Genre_am5" value="遊び時間">遊び時間
+        <input type="radio" name=genre_am5 id="Input_Genre_am5" value="無駄時間">無駄時間
+        <input type="radio" name=genre_am12 id="Input_Genre_am5" value="無駄時間">基本時間
+    </div>
+    <div class="form-group">
+        <label for="Input_Title_am5"></label>
+        <textarea class="form-control" name=title_am5 rows ="1">{{ title.title_am5 }}</textarea>
+    </div>
+    <div class="form-group">
+    <label for="Input_am3">6時--編集前の属性は{{genre.genre_am6}}</label><br>
+        <input type="radio" name=genre_am6 id="Input_Genre_am6" value="頑張り時間" required>頑張り時間
+        <input type="radio" name=genre_am6 id="Input_Genre_am6" value="遊び時間">遊び時間
+        <input type="radio" name=genre_am6 id="Input_Genre_am6" value="無駄時間">無駄時間
+        <input type="radio" name=genre_am12 id="Input_Genre_am6" value="無駄時間">基本時間
         
+    </div>
+    <div class="form-group">
+        <label for="Input_Title_am6"></label>
+        <textarea class="form-control" name=title_am6 rows ="1">{{ title.title_am6 }}</textarea>
+    </div>
+    <div class="form-group">
+    <label for="Input_am3">7時--編集前の属性は{{genre.genre_am7}}</label><br>
+        <input type="radio" name=genre_am7 id="Input_Genre_am7" value="頑張り時間" required>頑張り時間
+        <input type="radio" name=genre_am7 id="Input_Genre_am7" value="遊び時間">遊び時間
+        <input type="radio" name=genre_am7 id="Input_Genre_am7" value="無駄時間">無駄時間
+        <input type="radio" name=genre_am12 id="Input_Genre_am7" value="無駄時間">基本時間
+    </div>
+    <div class="form-group">
+        <label for="Input_Title_am7"></label>
+        <textarea class="form-control" name=title_am7 rows ="1">{{ title.title_am7 }}</textarea>
+    </div>
+    <div class="form-group">
+    <label for="Input_am3">8時--編集前の属性は{{genre.genre_am8}}</label><br>
+        <input type="radio" name=genre_am8 id="Input_Genre_am8" value="頑張り時間" required>頑張り時間
+        <input type="radio" name=genre_am8 id="Input_Genre_am8" value="遊び時間">遊び時間
+        <input type="radio" name=genre_am8 id="Input_Genre_am8" value="無駄時間">無駄時間
+        <input type="radio" name=genre_am12 id="Input_Genre_am8" value="無駄時間">基本時間
+    </div>
+    <div class="form-group">
+        <label for="Input_Title_am8"></label>
+        <textarea class="form-control" name=title_am8 rows ="1">{{ title.title_am8 }}</textarea>
+    </div>
+    <div class="form-group">
+    <label for="Input_am9">9時--編集前の属性は{{genre.genre_am9}}</label><br>
+        <input type="radio" name=genre_am9 id="Input_Genre_am9" value="頑張り時間" required>頑張り時間
+        <input type="radio" name=genre_am9 id="Input_Genre_am9" value="遊び時間">遊び時間
+        <input type="radio" name=genre_am9 id="Input_Genre_am9" value="無駄時間">無駄時間
+        <input type="radio" name=genre_am12 id="Input_Genre_am9" value="無駄時間">基本時間
+    </div>
+    <div class="form-group">
+        <label for="Input_Title_am9"></label>
+        <textarea class="form-control" name=title_am9 rows ="1">{{ title.title_am9 }}</textarea>
+    </div>
+    <div class="form-group">
+    <label for="Input_am10">10時--編集前の属性は{{genre.genre_am10}}</label><br>
+        <input type="radio" name=genre_am10 id="Input_Genre_am10" value="頑張り時間" required>頑張り時間
+        <input type="radio" name=genre_am10 id="Input_Genre_am10" value="遊び時間">遊び時間
+        <input type="radio" name=genre_am10 id="Input_Genre_am10" value="無駄時間">無駄時間
+        <input type="radio" name=genre_am12 id="Input_Genre_am10" value="無駄時間">基本時間
+    </div>
+    <div class="form-group">
+        <label for="Input_Title_am10"></label>
+        <textarea class="form-control" name=title_am10 rows ="1">{{ title.title_am10 }}</textarea>
+    </div>
+    <div class="form-group">
+    <label for="Input_am11">11時--編集前の属性は{{genre.genre_am11}}</label><br>
+        <input type="radio" name=genre_am11 id="Input_Genre_am11" value="頑張り時間" required>頑張り時間
+        <input type="radio" name=genre_am11 id="Input_Genre_am11" value="遊び時間">遊び時間
+        <input type="radio" name=genre_am11 id="Input_Genre_am11" value="無駄時間">無駄時間
+        <input type="radio" name=genre_am12 id="Input_Genre_am11" value="無駄時間">基本時間
+    </div>
+    <div class="form-group">
+        <label for="Input_Title_am11"></label>
+        <textarea class="form-control" name=title_am11 rows ="1">{{ title.title_am11 }}</textarea>
+    </div>
+    <div class="form-group">
+    <label for="Input_pm12">12時--編集前の属性は{{genre.genre_pm12}}</label><br>
+        <input type="radio" name=genre_pm12 id="Input_Genre_pm12" value="頑張り時間" required>頑張り時間
+        <input type="radio" name=genre_pm12 id="Input_Genre_pm12" value="遊び時間">遊び時間
+        <input type="radio" name=genre_pm12 id="Input_Genre_pm12" value="無駄時間">無駄時間
+        <input type="radio" name=genre_am12 id="Input_Genre_pm12" value="無駄時間">基本時間
+    </div>
+    <div class="form-group">
+        <label for="Input_Title_pm12"></label>
+        <textarea class="form-control" name=title_pm12 rows ="1">{{ title.title_pm12 }}</textarea>
+    </div>
+    <div class="form-group">
+    <label for="Input_pm1">13時--編集前の属性は{{genre.genre_pm1}}</label><br>
+        <input type="radio" name=genre_pm1 id="Input_Genre_pm1" value="頑張り時間" required>頑張り時間
+        <input type="radio" name=genre_pm1 id="Input_Genre_pm1" value="遊び時間">遊び時間
+        <input type="radio" name=genre_pm1 id="Input_Genre_pm1" value="無駄時間">無駄時間
+        <input type="radio" name=genre_am12 id="Input_Genre_pm1" value="無駄時間">基本時間
+    </div>
+    <div class="form-group">
+        <label for="Input_Title_pm1"></label>
+        <textarea class="form-control" name=title_pm1 rows ="1">{{ title.title_pm1 }}</textarea>
+    </div>
+    <div class="form-group">
+    <label for="Input_pm2">14時--編集前の属性は{{genre.genre_pm2}}</label><br>
+        <input type="radio" name=genre_pm2 id="Input_Genre_pm2" value="頑張り時間" required>頑張り時間
+        <input type="radio" name=genre_pm2 id="Input_Genre_pm2" value="遊び時間">遊び時間
+        <input type="radio" name=genre_pm2 id="Input_Genre_pm2" value="無駄時間">無駄時間
+        <input type="radio" name=genre_am12 id="Input_Genre_pm2" value="無駄時間">基本時間
+    </div>
+    <div class="form-group">
+        <label for="Input_Title_pm2"></label>
+        <textarea class="form-control" name=title_pm2 rows ="1">{{ title.title_pm2 }}</textarea>
+    </div>
+    <div class="form-group">
+    <label for="Input_pm3">15時--編集前の属性は{{genre.genre_pm3}}</label><br>
+        <input type="radio" name=genre_pm3 id="Input_Genre_pm3" value="頑張り時間" required>頑張り時間
+        <input type="radio" name=genre_pm3 id="Input_Genre_pm3" value="遊び時間">遊び時間
+        <input type="radio" name=genre_pm3 id="Input_Genre_pm3" value="無駄時間">無駄時間
+        <input type="radio" name=genre_am12 id="Input_Genre_pm3" value="無駄時間">基本時間
+    </div>
+    <div class="form-group">
+        <label for="Input_Title_pm3"></label>
+        <textarea class="form-control" name=title_pm3 rows ="1">{{ title.title_pm3 }}</textarea>
+    </div>
+    <div class="form-group">
+    <label for="Input_pm4">16時--編集前の属性は{{genre.genre_pm4}}</label><br>
+        <input type="radio" name=genre_pm4 id="Input_Genre_pm4" value="頑張り時間" required>頑張り時間
+        <input type="radio" name=genre_pm4 id="Input_Genre_pm4" value="遊び時間">遊び時間
+        <input type="radio" name=genre_pm4 id="Input_Genre_pm4" value="無駄時間">無駄時間
+        <input type="radio" name=genre_am12 id="Input_Genre_pm4" value="無駄時間">基本時間
+    </div>
+    <div class="form-group">
+        <label for="Input_Title_pm4"></label>
+        <textarea class="form-control" name=title_pm4 rows ="1">{{ title.title_pm4 }}</textarea>
+    </div>
+    <div class="form-group">
+    <label for="Input_pm5">17時--編集前の属性は{{genre.genre_pm5}}</label><br>
+        <input type="radio" name=genre_pm5 id="Input_Genre_pm5" value="頑張り時間" required>頑張り時間
+        <input type="radio" name=genre_pm5 id="Input_Genre_pm5" value="遊び時間">遊び時間
+        <input type="radio" name=genre_pm5 id="Input_Genre_pm5" value="無駄時間">無駄時間
+        <input type="radio" name=genre_am12 id="Input_Genre_pm5" value="無駄時間">基本時間
+    </div>
+    <div class="form-group">
+        <label for="Input_Title_pm5"></label>
+        <textarea class="form-control" name=title_pm5 rows ="1">{{ title.title_pm5 }}</textarea>
+    </div>
+    <div class="form-group">
+    <label for="Input_pm6">18時--編集前の属性は{{genre.genre_pm6}}</label><br>
+        <input type="radio" name=genre_pm6 id="Input_Genre_pm6" value="頑張り時間" required>頑張り時間
+        <input type="radio" name=genre_pm6 id="Input_Genre_pm6" value="遊び時間">遊び時間
+        <input type="radio" name=genre_pm6 id="Input_Genre_pm6" value="無駄時間">無駄時間
+        <input type="radio" name=genre_am12 id="Input_Genre_pm6" value="無駄時間">基本時間
+    </div>
+    <div class="form-group">
+        <label for="Input_Title_pm6"></label>
+        <textarea class="form-control" name=title_pm6 rows ="1">{{ title.title_pm6 }}</textarea>
+    </div>
+    <div class="form-group">
+    <label for="Input_pm7">19時--編集前の属性は{{genre.genre_pm7}}</label><br>
+        <input type="radio" name=genre_pm7 id="Input_Genre_pm7" value="頑張り時間" required>頑張り時間
+        <input type="radio" name=genre_pm7 id="Input_Genre_pm7" value="遊び時間">遊び時間
+        <input type="radio" name=genre_pm7 id="Input_Genre_pm7" value="無駄時間">無駄時間
+        <input type="radio" name=genre_am12 id="Input_Genre_pm7" value="無駄時間">基本時間
+    </div>
+    <div class="form-group">
+        <label for="Input_Title_pm7"></label>
+        <textarea class="form-control" name=title_pm7 rows ="1">{{ title.title_pm7 }}</textarea>
+    </div>
+    <div class="form-group">
+    <label for="Input_pm8">20時--編集前の属性は{{genre.genre_pm8}}</label><br>
+        <input type="radio" name=genre_pm8 id="Input_Genre_pm8" value="頑張り時間" required>頑張り時間
+        <input type="radio" name=genre_pm8 id="Input_Genre_pm8" value="遊び時間">遊び時間
+        <input type="radio" name=genre_pm8 id="Input_Genre_pm8" value="無駄時間">無駄時間
+        <input type="radio" name=genre_am12 id="Input_Genre_pm8" value="無駄時間">基本時間
+    </div>
+    <div class="form-group">
+        <label for="Input_Title_pm8"></label>
+        <textarea class="form-control" name=title_pm8 rows ="1">{{ title.title_pm8 }}</textarea>
+    </div>
+    <div class="form-group">
+    <label for="Input_pm9">21時--編集前の属性は{{genre.genre_pm9}}</label><br>
+        <input type="radio" name=genre_pm9 id="Input_Genre_pm9" value="頑張り時間" required>頑張り時間
+        <input type="radio" name=genre_pm9 id="Input_Genre_pm9" value="遊び時間">遊び時間
+        <input type="radio" name=genre_pm9 id="Input_Genre_pm9" value="無駄時間">無駄時間
+        <input type="radio" name=genre_am12 id="Input_Genre_pm9" value="無駄時間">基本時間
+    </div>
+    <div class="form-group">
+        <label for="Input_Title_pm9"></label>
+        <textarea class="form-control" name=title_pm9 rows ="1">{{ title.title_pm9 }}</textarea>
+    </div>
+    <div class="form-group">
+    <label for="Input_pm10">22時--編集前の属性は{{genre.genre_pm10}}</label><br>
+        <input type="radio" name=genre_pm10 id="Input_Genre_pm10" value="頑張り時間" required>頑張り時間
+        <input type="radio" name=genre_pm10 id="Input_Genre_pm10" value="遊び時間">遊び時間
+        <input type="radio" name=genre_pm10 id="Input_Genre_pm10" value="無駄時間">無駄時間
+        <input type="radio" name=genre_am12 id="Input_Genre_pm10" value="無駄時間">基本時間
+    </div>
+    <div class="form-group">
+        <label for="Input_Title_pm10"></label>
+        <textarea class="form-control" name=title_pm10 rows ="1">{{ title.title_pm10 }}</textarea>
+    </div>
+    <div class="form-group">
+    <label for="Input_pm11">23時--編集前の属性は{{genre.genre_pm11}}</label><br>
+        <input type="radio" name=genre_pm11 id="Input_Genre_pm11" value="頑張り時間" required>頑張り時間
+        <input type="radio" name=genre_pm11 id="Input_Genre_pm11" value="遊び時間">遊び時間
+        <input type="radio" name=genre_pm11 id="Input_Genre_pm11" value="無駄時間">無駄時間
+        <input type="radio" name=genre_am12 id="Input_Genre_pm11" value="無駄時間">基本時間
+    </div>
+    <div class="form-group">
+        <label for="Input_Title_pm11"></label>
+        <textarea class="form-control" name=title_pm11 rows ="1">{{ title.title_pm11 }}</textarea>
+    </div>
+    <div class="form-group">
+        <label for="InputText">残したいメモがあれば、入力してください</label>
+        <textarea class="form-control" id="InputText" name=text rows="3">{{ entry.text}}</textarea>
+    </div>
+    <button type ="submit" class="btn btn-primary">記録する</button>
+</form>
 {% endblock %}

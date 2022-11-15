@@ -59,9 +59,9 @@ class Genre(Base):
         self.genre_pm10 = genre_pm10,
         self.genre_pm11 = genre_pm11
 
-    def __repr__(self):
-        return '<Genre genres_id :{} genre_am12 :{} genre_am1 :{} genre_am2 :{} genre_am3 :{} genre_am4 :{} genre_am5 :{} genre_am6 :{} genre_am_7 :{} genre_am8 :{} genre_am9 :{} genre_am10 :{} genre_am11 :{} genre_pm12 :{} genre_pm1 :{} genre_pm2 :{} genre_pm3 :{} genre_pm4 :{} genre_pm5 :{} genre_pm6:{} genre_pm7 :{} genre_pm8 :{} genre_pm9 :{} genre_pm10 :{} genre_pm11 :{}>'.format(
-            self.genres_id, self.genre_am12, self.genre_am1, self.genre_am2, self.genre_am3, self.genre_am4, self.genre_am5, self.genre_am6, self.genre_am7, self.genre_am8, 
-            self.genre_am9, self.genre_am10, self.genre_am11, self.genre_pm12, self.genre_pm1, self.genre_pm2, self.genre_pm3, self.genre_pm4, self.genre_pm5, self.genre_pm6, 
-            self.genre_pm7, self.genre_pm8, self.genre_pm9, self.genre_pm10, self.genre_pm11
-        ) 
+    #def __repr__(self):
+    #    return '<Genre genres_id :{} genre_am12 :{} genre_am1 :{} genre_am2 :{} genre_am3 :{} genre_am4 :{} genre_am5 :{} genre_am6 :{} genre_am_7 :{} genre_am8 :{} genre_am9 :{} genre_am10 :{} genre_am11 :{} genre_pm12 :{} genre_pm1 :{} genre_pm2 :{} genre_pm3 :{} genre_pm4 :{} genre_pm5 :{} genre_pm6:{} genre_pm7 :{} genre_pm8 :{} genre_pm9 :{} genre_pm10 :{} genre_pm11 :{}>'.format(
+    #        self.genres_id, self.genre_am12, self.genre_am1, self.genre_am2, self.genre_am3, self.genre_am4, self.genre_am5, self.genre_am6, self.genre_am7, self.genre_am8, 
+    #        self.genre_am9, self.genre_am10, self.genre_am11, self.genre_pm12, self.genre_pm1, self.genre_pm2, self.genre_pm3, self.genre_pm4, self.genre_pm5, self.genre_pm6, 
+    #        self.genre_pm7, self.genre_pm8, self.genre_pm9, self.genre_pm10, self.genre_pm11
+    #   ) 

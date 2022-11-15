@@ -14,7 +14,7 @@ class Genre_count(Base):
         self.asobi_count = asobi_count,
         self.muda_count = muda_count
 
-    def __repr__(self):
-        return '<Genre_count genre_count_id :{} ganbari_count :{} asobi_count :{} muda_count:{}>'.format(
-            self.gannbari_count, self.asobi_count, self.muda_count
-        )
+    #def __repr__(self):
+    #    return '<Genre_count genre_count_id :{} ganbari_count :{} asobi_count :{} muda_count:{}>'.format(
+    #        self.gannbari_count, self.asobi_count, self.muda_count
+    #    )
