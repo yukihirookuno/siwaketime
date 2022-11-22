@@ -1,19 +1,16 @@
 {% extends "layout.html" %}
 {% block body %}
-<span class="border">
     <div class="container">
         <div class="position-absolute top-50 start-50 translate-middle">
-            <form action="{{ url_for('entry.search_date_entry') }}" method=post class="search-entry border p-5">
-                <div class="mb-3">
-                    <label for="InputSearch_date" class="form-label"> 記録を検索したい日にちを選んでください
+            <form action="{{ url_for('entry.search_date_entry') }}" method=post class="search-entry border p-5 border-primary border-1">
+                <div class="form-groupe mb-3">
+                    <label for="InputSearch_date" class="form-label fs-1 mb-2"> 記録を検索したい日を選んでください</label>
                         <input type="date" name=search_date id="InputSearch_date" class="form-control">
-                    </label>
                 </div>
-                <div class="mb-3">
-                    <button type ="submit" class="btn btn-primary">検索する</button>
+                <div class="form-groupe mb-3">
+                    <button type ="submit" class="btn btn-primary fs-5">検索する</button>
                 </div>
             </form>
         </div>
     </div>
-</span>
 {% endblock %}
