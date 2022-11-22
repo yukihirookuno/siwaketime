@@ -3,135 +3,209 @@
 <head>
     <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </head>
-{% for url_result in url_list%}
-<blockquote class="twitter-tweet">
-<a href={{ url_result }}></a>
-</blockquote>
-{% endfor %}
-<table class="table">
 {% if entry != None %}
-    <div class="share_btn">
-        <a href="https://twitter.com/share?hashtags=仕訳時間&text={{ username }}さんは、{{ entry[0].date }}は{{ entry[3].gannbari_count }}時間努力して{{ entry[3].asobi_count}}時間遊んで、{{ entry[3].muda_count}}時間無駄にしてしまったようです。明日も忘れず記録しよう！"ref_src="twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-5">{{username}}さんの{{entry[0].date}}の仕訳時間
+        </h1>
+                <div class="table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th scope="col">頑張り時間</th><th scope="col">遊び時間</th><th scope="col">無駄時間</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td scope="col">{{ entry[3].gannbari_count }}時間</td><td scope="col">{{ entry[3].asobi_count}}時間</td><td scope="col">{{ entry[3].muda_count}}時間</td>
+                            </tr>
+                    </table>
+                </div>
+        <div class="row">        
+            <div class="box1 col-8">       
+                <div class="accordion" id="accordionExample">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingOne">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                {{entry[0].date}}の詳しい記録を見る
+                            </button>
+                        </h2>
+                        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                            <div class="accordion-body container">
+                                <div  class="table">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">{{ entry[0].date}}</th><th scope="col">内容</th><th scope="col">属性</th> 
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>0時</td><td>{{ entry[2].title_am12 }}</td><td>{{ entry[1].genre_am12 }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>1時</td><td>{{ entry[2].title_am1 }}</td><td>{{ entry[1].genre_am1 }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>2時</td><td>{{ entry[2].title_am2 }}</td><td>{{ entry[1].genre_am2 }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>3時</td><td>{{ entry[2].title_am3 }}</td><td>{{ entry[1].genre_am3 }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>4時</td><td>{{ entry[2].title_am4 }}</td><td>{{ entry[1].genre_am4 }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>5時</td><td>{{ entry[2].title_am5 }}</td><td>{{ entry[1].genre_am5 }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>6時</td><td>{{ entry[2].title_am6 }}</td><td>{{ entry[1].genre_am6 }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>7時</td><td>{{ entry[2].title_am7 }}</td><td>{{ entry[1].genre_am7 }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>8時</td><td>{{ entry[2].title_am8 }}</td><td>{{ entry[1].genre_am8 }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>9時</td><td>{{ entry[2].title_am9 }}</td><td>{{ entry[1].genre_am9 }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>10時</td><td>{{ entry[2].title_am10 }}</td><td>{{ entry[1].genre_am10 }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>11時</td><td>{{ entry[2].title_am11 }}</td><td>{{ entry[1].genre_am11 }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>12時</td><td>{{ entry[2].title_pm12 }}</td><td>{{ entry[1].genre_pm12 }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>13時</td><td>{{ entry[2].title_pm1 }}</td><td>{{ entry[1].genre_pm1 }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>14時</td><td>{{ entry[2].title_pm2 }}</td><td>{{ entry[1].genre_pm2 }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>15時</td><td>{{ entry[2].title_pm3 }}</td><td>{{ entry[1].genre_pm3 }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>16時</td><td>{{ entry[2].title_pm4 }}</td><td>{{ entry[1].genre_pm4 }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>17時</td><td>{{ entry[2].title_pm5 }}</td><td>{{ entry[1].genre_pm5 }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>18時</td><td>{{ entry[2].title_pm6 }}</td><td>{{ entry[1].genre_pm6 }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>19時</td><td>{{ entry[2].title_pm7 }}</td><td>{{ entry[1].genre_pm7 }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>20時</td><td>{{ entry[2].title_pm8 }}</td><td>{{ entry[1].genre_pm8 }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>21時</td><td>{{ entry[2].title_pm9 }}</td><td>{{ entry[1].genre_pm9 }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>22時</td><td>{{ entry[2].title_pm10 }}</td><td>{{ entry[1].genre_pm10 }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>23時</td><td>{{ entry[2].title_pm11 }}</td><td>{{ entry[1].genre_pm11 }}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingTwo">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                                {{entry[0].date}}のメモ本文を見る
+                            </button>
+                        </h2>
+                        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                            <div class="accordion-body container">
+                            {{entry[0].text}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="btn-group mt-4">
+                    <form action="{{ url_for('entry.edit_entry', id=entry[0].entry_id, search_date=search_date) }}" method="get">
+                        <button type="submit" class="btn btn-secondary">{{ entry[0].date }}の記録を編集</button>
+                    </form>
+                    <form action="{{ url_for('entry.delete_entry', id=entry[0].entry_id, search_date=search_date) }}" method="post">
+                        <button type="submit" class="btn btn-danger" style="margin-left:5px">{{ entry[0].date }}の記録を削除</button>
+                    </form>
+                </div>
+                <div class="share_btn mt-2">
+                    <a href="https://twitter.com/share?hashtags=仕訳時間&text={{ username }}さんは、{{ entry[0].date }}は{{ entry[3].gannbari_count }}時間努力して{{ entry[3].asobi_count}}時間遊んで、{{ entry[3].muda_count}}時間無駄にしてしまったようです。明日も忘れず記録しよう！"ref_src="twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a>
+                    <p></p>
+                    <text1>twitterで仕訳時間のハッシュタグを付けてツイートして記録をみんなに共有しよう！</text1>
+                    <p></p>
+                    <text2>※仕訳時間のハッシュタグを付けてツイートをすると、他のユーザーが仕訳時間のアプリを利用しているときにアプリ上に表示されます。他の人に見られたくないときは、ハッシュタグ部分を消してツイートしてください。</text2>
+                    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                </div>
+            </div>  
+            <div class="box2 col-2">
+            {% for url_result in url_list%}
+                <blockquote class="twitter-tweet">
+                    <a href={{ url_result }}></a>
+                </blockquote>
+            {% endfor %}
+            </div>
+        </div>
     </div>
-    <div class="btn-group">
-        <form action="{{ url_for('entry.edit_entry', id=entry[0].entry_id, search_date=search_date) }}" method="get">
-            <button type="submit" class="btn btn-secondary">{{ entry[0].date }}の記録を編集</button>
-        </form>
-        <form action="{{ url_for('entry.delete_entry', id=entry[0].entry_id, search_date=search_date) }}" method="post">
-            <button type="submit" class="btn btn-danger" style="margin-left:5px">{{ entry[0].date }}の記録を削除</button>
-        </form>
-    </div>
-    <thead>
-        <tr>
-            <th scope="col">頑張り時間</th>
-            <th scope="col">遊び時間</th>
-            <th scope="col">無駄時間</th>
-        </tr>
-    </thead>
-    <tbody> 
-        <tr>
-            <td>{{ entry[3].gannbari_count }}時間</td>
-            <td>{{ entry[3].asobi_count}}時間</td>
-            <td>{{ entry[3].muda_count}}時間</td>
-        </tr>
-    </tbody>
-    <thead>
-        <tr>
-            <th scope="col">{{ entry[0].date}}</th>
-            <th scope="col">内容</th>
-            <th scope="col">属性</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>0時</td><td>{{ entry[2].title_am12 }}</td><td>{{ entry[1].genre_am12 }}</td>
-        </tr>
-        <tr>
-            <td>1時</td><td>{{ entry[2].title_am1 }}</td><td>{{ entry[1].genre_am1 }}</td>
-        </tr>
-        <tr>
-            <td>2時</td><td>{{ entry[2].title_am2 }}</td><td>{{ entry[1].genre_am2 }}</td>
-        </tr>
-        <tr>
-            <td>3時</td><td>{{ entry[2].title_am3 }}</td><td>{{ entry[1].genre_am3 }}</td>
-        </tr>
-        <tr>
-            <td>4時</td><td>{{ entry[2].title_am4 }}</td><td>{{ entry[1].genre_am4 }}</td>
-        </tr>
-        <tr>
-            <td>5時</td><td>{{ entry[2].title_am5 }}</td><td>{{ entry[1].genre_am5 }}</td>
-        </tr>
-        <tr>
-            <td>6時</td><td>{{ entry[2].title_am6 }}</td><td>{{ entry[1].genre_am6 }}</td>
-        </tr>
-        <tr>
-            <td>7時</td><td>{{ entry[2].title_am7 }}</td><td>{{ entry[1].genre_am7 }}</td>
-        </tr>
-        <tr>
-            <td>8時</td><td>{{ entry[2].title_am8 }}</td><td>{{ entry[1].genre_am8 }}</td>
-        </tr>
-        <tr>
-            <td>9時</td><td>{{ entry[2].title_am9 }}</td><td>{{ entry[1].genre_am9 }}</td>
-        </tr>
-        <tr>
-            <td>10時</td><td>{{ entry[2].title_am10 }}</td><td>{{ entry[1].genre_am10 }}</td>
-        </tr>
-        <tr>
-            <td>11時</td><td>{{ entry[2].title_am11 }}</td><td>{{ entry[1].genre_am11 }}</td>
-        </tr>
-        <tr>
-            <td>12時</td><td>{{ entry[2].title_pm12 }}</td><td>{{ entry[1].genre_pm12 }}</td>
-        </tr>
-        <tr>
-            <td>13時</td><td>{{ entry[2].title_pm1 }}</td><td>{{ entry[1].genre_pm1 }}</td>
-        </tr>
-        <tr>
-            <td>14時</td><td>{{ entry[2].title_pm2 }}</td><td>{{ entry[1].genre_pm2 }}</td>
-        </tr>
-        <tr>
-            <td>15時</td><td>{{ entry[2].title_pm3 }}</td><td>{{ entry[1].genre_pm3 }}</td>
-        </tr>
-        <tr>
-            <td>16時</td><td>{{ entry[2].title_pm4 }}</td><td>{{ entry[1].genre_pm4 }}</td>
-        </tr>
-        <tr>
-            <td>17時</td><td>{{ entry[2].title_pm5 }}</td><td>{{ entry[1].genre_pm5 }}</td>
-        </tr>
-        <tr>
-            <td>18時</td><td>{{ entry[2].title_pm6 }}</td><td>{{ entry[1].genre_pm6 }}</td>
-        </tr>
-        <tr>
-            <td>19時</td><td>{{ entry[2].title_pm7 }}</td><td>{{ entry[1].genre_pm7 }}</td>
-        </tr>
-        <tr>
-            <td>20時</td><td>{{ entry[2].title_pm8 }}</td><td>{{ entry[1].genre_pm8 }}</td>
-        </tr>
-        <tr>
-            <td>21時</td><td>{{ entry[2].title_pm9 }}</td><td>{{ entry[1].genre_pm9 }}</td>
-        </tr>
-        <tr>
-            <td>22時</td><td>{{ entry[2].title_pm10 }}</td><td>{{ entry[1].genre_pm10 }}</td>
-        </tr>
-        <tr>
-            <td>23時</td><td>{{ entry[2].title_pm11 }}</td><td>{{ entry[1].genre_pm11 }}</td>
-        </tr>
-    </tbody>
-    <tfoot>
-    {{ entry[0].text }}
-    </tfoot>
 {% else %}
-    <thead>
-        <tr>
-            <th scope="col">{{ search_date }}</th>
-            <th scope="col">内容</th>
-            <th scope="col">属性</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>本日の記録はまだありません</td><td></td><td></td>
-        </tr>
-    </tbody>
+<div class="container mt-5">
+        <h1 class="mb-5">{{username}}さんの{{search_date}}の仕訳時間
+        </h1>
+        <div class="row">        
+            <div class="box1 col-8">       
+                <div class="accordion" id="accordionExample">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingOne">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                {{search_date}}の記録はまだありません
+                            </button>
+                        </h2>
+                        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                            <div class="accordion-body container">
+                                <div class="btn-group mt-4">
+                                    <form action="{{ url_for('entry.new_entry') }}" method="get">
+                                        <button type="submit" class="btn btn-secondary">新しく記録を追加する</button>
+                                    </form>
+                                    <form action="{{ url_for('entry.search_entry') }}" method="get">
+                                        <button type="submit" class="btn btn-danger" style="margin-left:5px">別の日の記録を検索する</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingTwo">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                                このサイトの使い方を確認する
+                            </button>
+                        </h2>
+                        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                            <div class="accordion-body container">
+                            
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>  
+            <div class="box2 col-2">
+            {% for url_result in url_list%}
+                <blockquote class="twitter-tweet">
+                    <a href={{ url_result }}></a>
+                </blockquote>
+            {% endfor %}
+            </div>
+        </div>
+    </div>
 {% endif %}
-    </table>
+</body>
 {% endblock %}
