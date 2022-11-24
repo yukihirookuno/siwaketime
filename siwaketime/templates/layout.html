@@ -17,32 +17,38 @@
     <link href="https://fonts.googleapis.com/earlyaccess/mpluslp.css" rel="stylesheet" type="text/css">
     <link rel=stylesheet href="{{ url_for('static', filename='style.css') }}">
 
+    <link href="/static/images/favicon.ico" rel="icon">
+
 
 </head>
 <div class="container-fluid"></div>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="{{ url_for('entry.show_entries') }}">仕訳時間</a>
+    <nav class="navbar navbar-expand-md navbar-light bg-light text-dark border-bottom border-info border-2 fw-bold ">
+        <a class="navbar-brand  fs-1" href="{{ url_for('entry.show_entries') }}">
+            <img src="{{url_for('static',filename='images/時間で頭が一杯の人の無料アイコン.png')}}" alt="" width="60" height="48" class="d-inline-block align-text-top">&emsp;仕訳時間</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                {% if not session.logged_in%}
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('user.login') }}">ログイン</a>
+            <ul class="navbar-nav fs-5 ms-auto">
+                <li class="nav-item ">
+                    <a class="nav-link " href="{{ url_for('entry.show_entries') }}">&emsp;トップページ&emsp;</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('user.signup') }}">新規登録</a>
+                {% if not session.logged_in%}
+                <li class="nav-item ">
+                    <a class="nav-link" href="{{ url_for('user.login') }}">&emsp;ログイン&emsp;</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="{{ url_for('user.signup') }}">&emsp;新規登録&emsp;</a>
                 </li>
                 {% else %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('entry.new_entry') }}">記録する</a>
+                <li class="nav-item ">
+                    <a class="nav-link" href="{{ url_for('entry.new_entry') }}">&emsp;新しく記録する&emsp;</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('entry.search_entry') }}">他の日の記録を確認</a>
+                <li class="nav-item ">
+                    <a class="nav-link" href="{{ url_for('entry.search_entry') }}">&emsp;記録を検索する&emsp;</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('user.logout') }}">ログアウト</a>
+                <li class="nav-item ">
+                    <a class="nav-link" href="{{ url_for('user.logout') }}">&emsp;ログアウト&emsp;</a>
                 </li>
                 {% endif %}
             </ul>
@@ -55,7 +61,7 @@
     {% endfor %}
 
 
-    <div class="blog-body">
+    <div class="blog-body bg-light">
         {% block body %}{% endblock %}
     </div>
 </div>

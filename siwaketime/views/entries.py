@@ -15,15 +15,15 @@ from flask import Blueprint
 
 entry = Blueprint('entry', __name__)
 
-ganbari_counts = 0
+doryoku_counts = 0
 asobi_counts = 0
 muda_counts = 0
 
 
 def count_genre(genre):    
-    if genre == '頑張り時間':
-        global ganbari_counts
-        ganbari_counts += 1
+    if genre == '努力時間':
+        global doryoku_counts
+        doryoku_counts += 1
     if genre == '遊び時間':
         global asobi_counts
         asobi_counts += 1
@@ -32,8 +32,8 @@ def count_genre(genre):
         muda_counts += 1
 
 def count_reset():
-    global ganbari_counts
-    ganbari_counts = 0
+    global doryoku_counts
+    doryoku_counts = 0
     global asobi_counts
     asobi_counts = 0
     global muda_counts
@@ -117,8 +117,8 @@ def add_entry():
         count_genre(request.form['genre_pm9'])
         count_genre(request.form['genre_pm10'])
         count_genre(request.form['genre_pm11'])
-        global ganbari_counts
-        input_ganbari_count = ganbari_counts
+        global doryoku_counts
+        input_doryoku_count = doryoku_counts
         global asobi_counts
         input_asobi_count = asobi_counts
         global muda_counts
@@ -190,7 +190,7 @@ def add_entry():
         title.title_pm11 =request.form['title_pm11']
 
         genre_count = Genre_count()
-        genre_count.gannbari_count = input_ganbari_count
+        genre_count.gannbari_count = input_doryoku_count
         genre_count.asobi_count = input_asobi_count
         genre_count.muda_count = input_muda_count
 
@@ -199,7 +199,8 @@ def add_entry():
         db_session.add(title)
         db_session.add(genre_count)
         db_session.commit()
-        session["check_recorded"]=="ok"
+        session["check_recorded"]="ok"
+        session["date"]=input_date
         count_reset()
         flash('記録の登録が完了しました')
         return redirect (url_for('entry.show_entries'))  
@@ -267,8 +268,8 @@ def update_entry(id):
     count_genre(request.form['genre_pm10'])
     count_genre(request.form['genre_pm11'])
 
-    global ganbari_counts
-    input_ganbari_count = ganbari_counts
+    global doryoku_counts
+    input_doryoku_count = doryoku_counts
     global asobi_counts
     input_asobi_count = asobi_counts
     global muda_counts
@@ -328,7 +329,7 @@ def update_entry(id):
     title.title_pm10 =request.form['title_pm10']
     title.title_pm11 =request.form['title_pm11']
 
-    genre_count.gannbari_count = input_ganbari_count
+    genre_count.gannbari_count = input_doryoku_count
     genre_count.asobi_count = input_asobi_count
     genre_count.muda_count = input_muda_count
 

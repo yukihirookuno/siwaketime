@@ -2,13 +2,13 @@
 {% block body %}
     <div class="container">
         <div class="position-absolute top-50 start-50 translate-middle">
-            <form action="{{ url_for('entry.search_date_entry') }}" method=post class="search-entry border p-5 border-primary border-1">
+            <form action="{{ url_for('entry.search_date_entry') }}" method=post class="search-entry border p-5 border-info border-4 rounded fw-bold">
                 <div class="form-groupe mb-3">
-                    <label for="InputSearch_date" class="form-label fs-1 mb-2"> 記録を検索したい日を選んでください</label>
+                    <label for="InputSearch_date" class="form-label fs-1 mb-2"> 記録を検索したい日付を入力</label>
                         <input type="date" name=search_date id="InputSearch_date" class="form-control">
                 </div>
-                <div class="form-groupe mb-3">
-                    <button type ="submit" class="btn btn-primary fs-5">検索する</button>
+                <div class="form-groupe mb-3 mx-auto" style="width: 100px;">
+                    <button type ="submit" class="btn btn-outline-primary fs-5 ">検索する</button>
                 </div>
             </form>
         </div>

@@ -78,7 +78,7 @@ def login():
             session['logged_in'] = True
             session["id"] = user.user_id
             session["username"] = user.username
-            input_day = date.today().strftime('%Y/%m/%d')
+            input_day = date.today().strftime('%Y-%m-%d')
             session["date"] = input_day
             flash('ログインが完了しました')
             return redirect(url_for('entry.show_entries'))

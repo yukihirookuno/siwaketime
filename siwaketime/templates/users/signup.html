@@ -1,23 +1,25 @@
 {% extends "layout.html" %}
 {% block body %}
-<form action="{{ url_for('user.signup') }}" method = post>
-    <div class="form-group">
-        <label for = "InputTitle">ユーザー名</label>
-        <input type="text" class="form-control" id ="InputTitle" name="username">
+<div class="container">
+    <div class="position-absolute top-50 start-50 translate-middle">
+        <form action="{{ url_for('user.signup') }}" method = post class="border p-5 border-info border-4 rounded fw-bold">
+            <div class="form-group mb-3">
+                <label for = "InputTitle" class="form-label fs-5 mb-2">ユーザー名</label>
+                <input type="text" class="form-control" id ="InputTitle" name="username">
+            </div>
+            <div class="form-group mb-3">
+                <label for = "InputPassword" class="form-label fs-5 mb-2">パスワード</label>
+                <input type="password" class="form-control" id ="InputPassword" name="password">
+            </div>
+
+            <div class="form-group mb-3">
+                <label for = "confirmation" class="form-label fs-5 mb-2">パスワード（確認）</label>
+                <input type="password" class="form-control" id ="confirmation" name="confirmation">
+            </div>
+            <div class="form-groupe mx-auto" style="width: 100px;">
+            <button type="submit" class="btn btn-outline-primary m-auto">新規登録</button>
+            </div>
+        </form>
     </div>
-
-    <div class="form-group">
-        <label for = "InputPassword">パスワード</label>
-        <input type="password" class="form-control" id ="InputPassword" name="password">
-    </div>
-
-    <div class="form-group">
-        <label for = "confirmation">もう一度パスワードを入力してください</label>
-        <input type="password" class="form-control" id ="confirmation" name="confirmation">
-    </div>
-
-    <button type="submit" class="btn btn-primary">新規登録</button>
-
-</form>
-使い方説明ページ
+</div>
 {% endblock %}
