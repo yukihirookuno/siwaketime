@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ja">
 <title>仕訳時間</title>
 
 <head>
@@ -21,7 +21,7 @@
 
 
 </head>
-<div class="container-fluid"></div>
+<div class="container-fluid "></div>
     <nav class="navbar navbar-expand-md navbar-light bg-light text-dark border-bottom border-info border-2 fw-bold ">
         <a class="navbar-brand  fs-1" href="{{ url_for('entry.show_entries') }}">
             <img src="{{url_for('static',filename='images/時間で頭が一杯の人の無料アイコン.png')}}" alt="" width="60" height="48" class="d-inline-block align-text-top">&emsp;仕訳時間</a>
@@ -55,13 +55,13 @@
         </div>
     </nav>
     {% for message in get_flashed_messages() %}
-    <div class="alert alert-info" role="alert">
+    <div class="alert alert-info border-bottom border-secondary border-1 fs-5 fw-bold" role="alert">
         {{ message }}
     </div>
     {% endfor %}
 
 
-    <div class="blog-body bg-light">
+    <div class="blog-body d-inline">
         {% block body %}{% endblock %}
     </div>
 </div>

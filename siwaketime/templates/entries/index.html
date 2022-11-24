@@ -3,25 +3,55 @@
 <head>
     <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </head>
-<body>
+<body class="bg-light">
 <p></p><p></p>
+
+<div>
+<canvas id="myChart"></canvas>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+const ctx = document.getElementById('myChart');
+
+new Chart(ctx, {
+    type: 'bar',
+    data: {
+    labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+    datasets: [{
+        label: '# of Votes',
+        data: [12, 19, 3, 5, 2, 3],
+        borderWidth: 1
+    }]
+    },
+    options: {
+    scales: {
+        y: {
+        beginAtZero: true
+        }
+    }
+    }
+});
+</script>
+
+
 {% if entry != None %}
     <div class="container fw-bold">    
-        <h1 class="mb-5">{{username}}さんの{{entry[0].date}}の仕訳時間
-        </h1>
-                <div class="table">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th scope="col">努力時間</th><th scope="col">遊び時間</th><th scope="col">無駄時間</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td scope="col">{{ entry[3].gannbari_count }}時間</td><td scope="col">{{ entry[3].asobi_count}}時間</td><td scope="col">{{ entry[3].muda_count}}時間</td>
-                            </tr>
-                    </table>
-                </div>
+        <h1 class="mb-5">{{username}}さんの{{entry[0].date}}の仕訳時間</h1>
+        <div class="table">
+            <table>
+                <thead>
+                    <tr>
+                        <th scope="col">努力時間</th><th scope="col">遊び時間</th><th scope="col">無駄時間</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td scope="col">{{ entry[3].gannbari_count }}時間</td><td scope="col">{{ entry[3].asobi_count}}時間</td><td scope="col">{{ entry[3].muda_count}}時間</td>
+                    </tr>
+            </table>
+        </div>
         <div class="row">        
             <div class="box1 col-md-7 col-xs-12">
                 <div class="border border-info p-3 border-4 rounded fw-bold">
@@ -157,8 +187,8 @@
                     </div>
                 </div>
             </div>  
-            <div class="box3 col-md-1 col-xs-12">&emsp;</div>
-            <div class="box3 twitter col-md-3 col-xs-12 mt-1 border-top border-start p-1 border-info border-4 rounded fw-bold">
+            <div class="box2 col-md-1 col-xs-12">&emsp;</div>
+            <div class="box3 col-md-3 col-xs-12 mt-1 border-top border-start p-1 border-info border-4 rounded fw-bold">
             <h2 class="border-bottom border-info border-4 rounded"><div class="text-center">みんなの記録</div><div class="text-center">掲示板</div></h2>
             <div class="text-start fs-6"><p></p>このアプリを使っているみんなの<div class="text-start fs-6">記録や投稿を見ることが出来ます!</div><div class="text-start fs-6">みんなの頑張っている記録を見れば</div><div class="text-start fs-6">モチベーションも上がるかも！</div>あなたも記録をツイートして仕訳仲間を増やそう！</div>
             {% for url_result in url_list%}
@@ -174,7 +204,7 @@
         <h1 class="mb-5">{{username}}さんの{{search_date}}の仕訳時間
         </h1>
         <div class="row">        
-            <div class="box1 col-md-7 col-xs-12 mb-3 ">       
+            <div class="box1 col-md-7 col-xs-12">       
                 <div class="accordion " id="accordionExample">
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="panelsStayOpen-headingOne">
@@ -187,12 +217,12 @@
                                 <div class="row mx-auto mt-4 fs-6">
                                     <div class="box1 col-6">
                                         <form action="{{ url_for('entry.new_entry') }}" method="get">
-                                            <button type="submit" class="btn btn-outline-primary fw-bold">新しく記録を追加する</button>
+                                            <button type="submit" class="btn btn-outline-primary fw-bold">記録を追加</button>
                                         </form>
                                     </div>
                                     <div class="box2 col-6">
                                         <form action="{{ url_for('entry.search_entry') }}" method="get">
-                                            <button type="submit" class="btn btn-outline-danger fw-bold">記録を検索する</button>
+                                            <button type="submit" class="btn btn-outline-danger fw-bold">記録を検索</button>
                                         </form>
                                     </div>
                                 </div>
@@ -213,9 +243,10 @@
                     </div>
                 </div>
             </div>  
-            <div class="box2 twitter col-md-4 col-xs-12 border border-info p-3 border-4 rounded fw-bold">
-            <h2>・みんなの記録</h2>
-            <div>このアプリを使っている他の人々の記録や投稿を見ることが出来ます!あなたもぜひ、Twitterで共有してみてください!</div>
+            <div class="box2 col-md-1 col-xs-12">&emsp;</div>
+            <div class="box3 col-md-4 col-xs-12 mt-1 border-top border-start p-1 border-info border-4 rounded fw-bold">
+            <h2 class="border-bottom border-info border-4 rounded">・みんなの記録</h2>
+            <div class="text-start fs-6"><p></p>このアプリを使っているみんなの<div class="text-start fs-6">記録や投稿を見ることが出来ます!</div><div class="text-start fs-6">みんなの頑張っている記録を見れば</div><div class="text-start fs-6">モチベーションも上がるかも！</div>あなたも記録をツイートして仕訳仲間を増やそう！</div>
             {% for url_result in url_list%}
                 <blockquote class="twitter-tweet">
                     <a href={{ url_result }}></a>
