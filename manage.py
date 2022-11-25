@@ -1,5 +1,5 @@
 from flask_script import Manager
-from siwaketime import create_app
+from siwaketime.app import create_app
 from siwaketime.models.entries.entries import Entry 
 from siwaketime.models.entries.genre_count import Genre_count
 from siwaketime.models.entries.genres import Genre

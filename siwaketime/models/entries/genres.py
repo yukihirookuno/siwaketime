@@ -1,4 +1,4 @@
-from siwaketime import db
+from siwaketime.app import db
 from siwaketime.config import Base 
 
 class Genre(Base):
