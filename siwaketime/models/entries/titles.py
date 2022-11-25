@@ -1,4 +1,4 @@
-from siwaketime.myapp.app import db
+from siwaketime import db
 from siwaketime.config import Base 
 
 class Title(Base):

@@ -1,4 +1,4 @@
-from siwaketime.myapp.app import db
+from siwaketime import db
 from siwaketime.config import engine, Base 
 
 class Entry(Base):

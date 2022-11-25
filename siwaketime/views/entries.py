@@ -1,6 +1,6 @@
 from flask import request, redirect, url_for,render_template,flash,session
 from flask import current_app as app
-from siwaketime.myapp.app import db
+from siwaketime import db
 from siwaketime.config import db_session, engine,api_key,api_secret_key,access_token,access_token_secret,bearer_token
 from siwaketime.models.entries.entries import Entry
 from siwaketime.models.users import User
