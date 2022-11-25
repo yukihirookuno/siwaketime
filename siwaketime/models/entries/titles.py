@@ -1,4 +1,4 @@
-from siwaketime import db
+from siwaketime.myapp.app import db
 from siwaketime.config import Base 
 
 class Title(Base):
@@ -57,12 +57,3 @@ class Title(Base):
         self.title_pm9 = title_pm9,
         self.title_pm10 = title_pm10,
         self.title_pm11 = title_pm11
-
-
-        #def __repr__(self):
-        #    return '<Title titles_id :{} title_am12 :{} title_am1 :{} title_am2 :{} title_am3 :{} title_am4 :{}title_am5 :{}title_am6 :{}title_am7 :{}title_am8 :{}title_am9 :{}title_am10 :{}title_am11 :{} title_pm12 :{} title_pm1 :{} title_pm2 :{} title_pm3 :{}title_pm4 :{}title_pm5 :{}title_pm6 :{}title_pm7 :{}title_pm8 :{}title_pm9 :{}title_pm10 :{}title_pm11 :{}title_pm12 :{}>'.format(
-        #        self.titles_id, self.title_am12, self. title_am1, self.title_am2,self.title_am3,self.title_am4,
-        #        self.title_am5,self.title_am6,self.title_am7,self.title_am8,self.title_am9,self.title_am10,self.title_am11,
-        #        self.title_pm12,self.title_pm1, self.title_pm2, self.title_pm3, self.title_pm4, self.title_pm5,self.title_pm6,
-        #        self.title_pm7,self.title_pm8,self.title_pm9, self.title_pm10, self.title_pm11 
-        #    )

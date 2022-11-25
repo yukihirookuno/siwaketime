@@ -2,8 +2,13 @@
 {% block body %}
 <body class="bg-light">
     <div class="container">
-        <div class="row position-absolute top-50 start-50 translate-middle">
-            <div class="box1 col-12">
+        <div class="row">
+            <div class="border p-4 border-info border-4 rounded fw-bold mt-5">
+                1日の24時間を、<div class="text-start">「勉強や運動、仕事など頑張った努力時間」</div><div class="text-start"></div>「趣味や友人との時間に使った遊び時間」
+                <div class="text-start">「ダラダラしてしまったり、後で後悔するような無駄時間」</div><div class="text-start">「食事や睡眠やお風呂などの生活に使った基本時間」</div>この4つに、ボタンを押すだけで楽に２４時間を仕訳をして、分析することが出来る<div class="text-start">Webアプリケーションです。</div><p></p>
+                <div class="text-start">改めて、日々の生活を振り返ってみることで、</div>自分自信では気づけていなかった無駄な時間を見つけられるかも!趣味も遊びも両立したい人におすすめ!
+            </div>
+            <div class="box1 col-12 mt-4">
                 <form action="{{ url_for('user.login') }}" method = post class="border p-5 border-info border-4 rounded fw-bold">
                     <div class="form-group mb-3">
                         <label for = "InputTitle" class="form-label fs-5 mb-2">ユーザー名</label>

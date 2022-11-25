@@ -1,6 +1,5 @@
-from siwaketime import db
+from siwaketime.myapp.app import db
 from siwaketime.config import engine, Base 
-import sys
 
 class Entry(Base):
     __tablename__ = 'entries'
@@ -16,8 +15,3 @@ class Entry(Base):
         self.text = text,
         self.user_id = user_id,
         self.username = username
-
-    #def __repr__(self):
-    #    return '<Entry entry_id :{} date :{} text :{} user_id :{} username :{}>'.format(
-    #        self.date, self.text, self.user_id, self.username
-    #    ) 

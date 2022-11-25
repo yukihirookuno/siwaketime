@@ -15,14 +15,14 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
     <link href="https://fonts.googleapis.com/earlyaccess/mpluslp.css" rel="stylesheet" type="text/css">
-    <link rel=stylesheet href="{{ url_for('static', filename='style.css') }}">
+    <link rel=stylesheet href="{{ url_for('static', filename='css/style.css') }}">
 
-    <link href="/static/images/favicon.ico" rel="icon">
+    <link href="{{ url_for('static', filename='images/favicon.ico') }}" rel="icon">
 
 
 </head>
 <div class="container-fluid "></div>
-    <nav class="navbar navbar-expand-md navbar-light bg-light text-dark border-bottom border-info border-2 fw-bold ">
+    <nav class="navbar navbar-expand-md navbar-light bg-light text-dark border-bottom border-info border-4 fw-bold ">
         <a class="navbar-brand  fs-1" href="{{ url_for('entry.show_entries') }}">
             <img src="{{url_for('static',filename='images/時間で頭が一杯の人の無料アイコン.png')}}" alt="" width="60" height="48" class="d-inline-block align-text-top">&emsp;仕訳時間</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">

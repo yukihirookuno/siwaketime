@@ -1,4 +1,4 @@
-from siwaketime import db
+from siwaketime.myapp.app import db
 from siwaketime.config import Base
 
 class User(Base):
@@ -10,6 +10,3 @@ class User(Base):
     def __init__(self, username=None, hash=None):
         self.username = username
         self.hash = hash
-
-    #def __repr__(self):
-    #    return '<User user_id:{} username:{} hash:{}>'.format(self.user_id, self.username, self.hash) 

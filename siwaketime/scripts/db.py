@@ -1,5 +1,5 @@
 from flask_script import Command
-from siwaketime import db
+from siwaketime.myapp.app import db
 from siwaketime.config import engine
 from siwaketime.config import Base
 

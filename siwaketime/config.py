@@ -4,8 +4,6 @@ from dotenv import load_dotenv
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
-import tweepy
-import siwaketime
 
 secret = os.urandom(24)
 SECRET_KEY = secret

@@ -2,67 +2,90 @@
 {% block body %}
 <head>
     <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.js"></script>
+    <script type="text/javascript" src="{{url_for('static',filename='js/plugin.js')}}"></script>
 </head>
 <body class="bg-light">
 <p></p><p></p>
-
-<div>
-<canvas id="myChart"></canvas>
-</div>
-
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-<script>
-const ctx = document.getElementById('myChart');
-
-new Chart(ctx, {
-    type: 'bar',
-    data: {
-    labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-    datasets: [{
-        label: '# of Votes',
-        data: [12, 19, 3, 5, 2, 3],
-        borderWidth: 1
-    }]
-    },
-    options: {
-    scales: {
-        y: {
-        beginAtZero: true
-        }
-    }
-    }
-});
-</script>
-
-
 {% if entry != None %}
     <div class="container fw-bold">    
-        <h1 class="mb-5">{{username}}さんの{{entry[0].date}}の仕訳時間</h1>
-        <div class="table">
-            <table>
-                <thead>
-                    <tr>
-                        <th scope="col">努力時間</th><th scope="col">遊び時間</th><th scope="col">無駄時間</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td scope="col">{{ entry[3].gannbari_count }}時間</td><td scope="col">{{ entry[3].asobi_count}}時間</td><td scope="col">{{ entry[3].muda_count}}時間</td>
-                    </tr>
-            </table>
-        </div>
         <div class="row">        
             <div class="box1 col-md-7 col-xs-12">
                 <div class="border border-info p-3 border-4 rounded fw-bold">
                     <div class="accordion" id="accordionExample">
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="panelsStayOpen-headingOne">
-                                <button class="accordion-button fs-4 fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                                <h1 class="fw-bold">{{entry[0].date}}の仕訳時間</h1>
+                            </button>
+                            </h2>
+                            <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
+                                <div class="accordion-body">
+                                    <canvas id="canvas"></canvas>
+                                    <script>
+                                    var doryoku_count_js = {{ entry[3].doryoku_count|tojson}};
+                                    var asobi_count_js = {{ entry[3].asobi_count|tojson}};
+                                    var muda_count_js = {{ entry[3].muda_count|tojson}};
+                                    var kihon_count_js ={{ entry[3].kihon_count|tojson}};
+
+                                    var chartVal = [];
+
+                                    input_piechart();
+                                    drawChart();
+                                    window.addEventListener('load', function() {
+                                        if (myChart) {
+                                        myChart.destroy();
+                                        }
+
+                                    input_piechart();
+                                    drawChart();
+                                    })
+
+                                    function input_piechart() {
+                                        chartVal = [];
+                                        chartVal.push(doryoku_count_js);
+                                        chartVal.push(asobi_count_js);
+                                        chartVal.push(muda_count_js);
+                                        chartVal.push(kihon_count_js);
+                                        }
+
+                                    function drawChart() {
+                                        var ctx = document.getElementById('canvas').getContext('2d');
+                                        window.myChart = new Chart(ctx, { 
+                                        type: 'pie',
+                                        data: { 
+                                            labels: ['努力時間','遊び時間','無駄時間','基本時間'],
+                                            datasets: [{
+                                                data: chartVal, 
+                                                backgroundColor: ['#007bff', '#ffc107','#dc3545','#28a745']
+                                                }],
+                                            }
+                                            });
+                                            }
+                                    </script>
+                                    <div  class="table">
+                                        <table class="table table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col"class="text-primary">努力&emsp;時間</th><th scope="col" class="text-warning ">遊び&emsp;時間</th><th scope="col" class="text-danger">無駄&emsp;時間</th><th scope="col" class="text-success">基本&emsp;時間</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td scope="col" class="text-primary">{{ entry[3].doryoku_count }}時間</td><td scope="col" class="text-warning">{{ entry[3].asobi_count}}時間</td><td scope="col" class="text-danger">{{ entry[3].muda_count}}時間</td><td scope="col" class="text-success">{{ entry[3].kihon_count}}時間</td>
+                                                </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+                                <button class="accordion-button collapsed fs-4 fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
                                     {{entry[0].date}}の詳しい記録を見る
                                 </button>
                             </h2>
-                            <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
+                            <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingOne">
                                 <div class="accordion-body container">
                                     <div  class="table">
                                         <table class="table table-hover">
@@ -151,42 +174,112 @@ new Chart(ctx, {
                             </div>
                         </div>
                         <div class="accordion-item">
-                            <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
-                                <button class="accordion-button collapsed fs-4 fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+                            <h2 class="accordion-header" id="panelsStayOpen-headingThree">
+                                <button class="accordion-button collapsed fs-4 fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
                                     {{entry[0].date}}のメモを見る
                                 </button>
                             </h2>
-                            <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                            <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
                                 <div class="accordion-body container">
                                 {{entry[0].text}}
                                 </div>
                             </div>
                         </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="panelsStayOpen-headingFour">
+                                <button class="accordion-button collapsed fs-4 fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFour" aria-expanded="false" aria-controls="panelsStayOpen-collapseFour">
+                                    <div>今までの合計仕訳時間を観る</div>
+                                </button>
+                            </h2>
+                            <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingFour">
+                                <div class="accordion-body container">
+                                    <canvas id="sum"></canvas>
+                                    <script>
+                                    var sum_doryoku_js = {{ sum_doryoku|tojson}};
+                                    var sum_asobi_js = {{ sum_asobi|tojson}};
+                                    var sum_muda_js = {{ sum_muda|tojson}};
+                                    var sum_kihon_js ={{ sum_kihon|tojson}};
+
+                                    var chartVal = []; 
+
+                                    input_piechart(); 
+                                    drawChart();
+                                    window.addEventListener('load', function() {
+                                        if (myChart) {
+                                        myChart.destroy();
+                                        }
+
+                                    input_piechart(); 
+                                    drawChart(); 
+                                    })
+
+                                    function input_piechart() {
+                                        chartVal = []; 
+                                        chartVal.push(sum_doryoku_js);
+                                        chartVal.push(sum_asobi_js);
+                                        chartVal.push(sum_muda_js);
+                                        chartVal.push(sum_kihon_js);
+                                        }
+
+                                    function drawChart() {
+                                        var ctx = document.getElementById('sum').getContext('2d');
+                                        window.myChart = new Chart(ctx, { 
+                                        type: 'pie',
+                                        data: { 
+                                            labels: ['努力時間','遊び時間','無駄時間','基本時間'],
+                                            datasets: [{
+                                                data: chartVal, 
+                                                backgroundColor: ['#007bff', '#ffc107','#dc3545','#28a745']
+                                                }],
+                                            }
+                                            });
+                                            }
+                                    </script>
+                                    <div  class="table">
+                                        <table class="table table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col"class="text-primary">努力&emsp;時間</th><th scope="col" class="text-warning ">遊び&emsp;時間</th><th scope="col" class="text-danger">無駄&emsp;時間</th><th scope="col" class="text-success">基本&emsp;時間</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td scope="col" class="text-primary">{{ sum_doryoku }}時間</td><td scope="col" class="text-warning">{{ sum_asobi}}時間</td><td scope="col" class="text-danger">{{ sum_muda}}時間</td><td scope="col" class="text-success">{{ sum_kihon}}時間</td>
+                                                </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="row mx-auto mt-4 fs-6 ">
-                        <div class="box1 col-5">
+                        <div class="box1 col-4">
                             <form action="{{ url_for('entry.edit_entry', id=entry[0].entry_id, search_date=search_date) }}" method="get">
                                 <button type="submit" class="btn btn-outline-primary fw-bold">{{ entry[0].date }}の<div class="text-center">記録を編集</div></button>
                             </form>
                         </div>
-                        <div class=" box2 col-2">&emsp;</div>
-                        <div class="box3 col-5">
+                        <div class="box2 col-4">
                             <form action="{{ url_for('entry.delete_entry', id=entry[0].entry_id, search_date=search_date) }}" method="post">
                                 <button type="submit" class="btn btn-outline-danger fw-bold" >{{ entry[0].date }}の<div class="text-center">記録を削除</div></button>
                             </form>
                         </div>
+                        <div class="box3 col-4">
+                            <form action="{{ url_for('entry.search_entry') }}" method="get">
+                                <button type="submit" class="btn btn-outline-success fw-bold">別の日の<div class="text-center">記録を検索</div></button>
+                            </form>
+                        </div>
                     </div>
-                </div>
                 <div class="mt-3 border p-2 border-info border-4 rounded fw-bold">
                     <div class="text-start fs-6">twitterで仕訳時間のハッシュタグを付けてツイートして記録を、みんなに共有しよう!</div>
                     <div class="share_btn mt-3">
-                        <a href="https://twitter.com/share?hashtags=仕訳時間&text={{ username }}さんは、{{ entry[0].date }}は{{ entry[3].gannbari_count }}時間努力して{{ entry[3].asobi_count}}時間遊んで、{{ entry[3].muda_count}}時間無駄にしてしまったようです。明日も忘れず記録しよう！"ref_src="twsrc%5Etfw" class="twitter-share-button" data-show-count="false" data-size="large">Tweet</a>
+                        <a href="https://twitter.com/share?hashtags=仕訳時間&text={{username}}さんの{{ entry[0].date }}の仕訳時間は、努力時間が{{ entry[3].doryoku_count }}時間&emsp;遊び時間が{{ entry[3].asobi_count}}時間&emsp;無駄時間が{{ entry[3].muda_count}}時間&emsp;基本時間が{{entry[3].muda_count}}時間でした！&emsp;明日も忘れず記録しよう！"ref_src="twsrc%5Etfw" class="twitter-share-button" data-show-count="false" data-size="large">Tweet</a>
                         <p></p>
                         <div class="text-start fs-6">※仕訳時間のハッシュタグを付けてツイートをすると</div>他のユーザーにもあなたのツイートが表示されます。<div class="text-start fs-6">他の人に見られたくないときは、ハッシュタグを消して</div><div class="text-start fs-6">ツイートしてください。</div>
                         <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                        </div>
                     </div>
-                </div>
-            </div>  
+                </div>  
+            </div>
             <div class="box2 col-md-1 col-xs-12">&emsp;</div>
             <div class="box3 col-md-3 col-xs-12 mt-1 border-top border-start p-1 border-info border-4 rounded fw-bold">
             <h2 class="border-bottom border-info border-4 rounded"><div class="text-center">みんなの記録</div><div class="text-center">掲示板</div></h2>
@@ -201,15 +294,14 @@ new Chart(ctx, {
     </div>
 {% else %}
 <div class="container fw-bold">
-        <h1 class="mb-5">{{username}}さんの{{search_date}}の仕訳時間
-        </h1>
-        <div class="row">        
-            <div class="box1 col-md-7 col-xs-12">       
+    <div class="row">        
+        <div class="box1 col-md-7 col-xs-12">
+            <div class="border border-info p-3 border-4 rounded fw-bold">       
                 <div class="accordion " id="accordionExample">
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="panelsStayOpen-headingOne">
                             <button class="accordion-button fs-4 fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
-                                {{search_date}}の記録はまだありません
+                                <h1 >{{search_date}}の記録は<div class="text-center">まだされていません。</div></h1>
                             </button>
                         </h2>
                         <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne" >
@@ -222,7 +314,7 @@ new Chart(ctx, {
                                     </div>
                                     <div class="box2 col-6">
                                         <form action="{{ url_for('entry.search_entry') }}" method="get">
-                                            <button type="submit" class="btn btn-outline-danger fw-bold">記録を検索</button>
+                                            <button type="submit" class="btn btn-outline-success fw-bold">記録を検索</button>
                                         </form>
                                     </div>
                                 </div>
@@ -231,30 +323,102 @@ new Chart(ctx, {
                     </div>
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
-                                このサイトの使い方を確認する
+                            <button class="accordion-button collapsed fs-4 fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+                                <div>今までの合計仕訳時間を観る</div>
                             </button>
                         </h2>
                         <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
                             <div class="accordion-body container">
-                            
+                                <canvas id="sum"></canvas>
+                                <script>
+                                var sum_doryoku_js = {{ sum_doryoku|tojson}};
+                                var sum_asobi_js = {{ sum_asobi|tojson}};
+                                var sum_muda_js = {{ sum_muda|tojson}};
+                                var sum_kihon_js ={{ sum_kihon|tojson}};
+
+                                var chartVal = []; 
+
+                                input_piechart(); 
+                                drawChart();
+
+                                window.addEventListener('load', function() {
+                                
+                                    if (myChart) {
+                                    myChart.destroy();
+                                    }
+
+                                input_piechart();
+                                drawChart(); 
+                                })
+
+                                function input_piechart() {
+                                    chartVal = []; 
+                                    chartVal.push(sum_doryoku_js);
+                                    chartVal.push(sum_asobi_js);
+                                    chartVal.push(sum_muda_js);
+                                    chartVal.push(sum_kihon_js);
+                                    }
+
+                                function drawChart() {
+                                    var ctx = document.getElementById('sum').getContext('2d');
+                                    window.myChart = new Chart(ctx, { 
+                                    type: 'pie',
+                                    data: { 
+                                        labels: ['努力時間','遊び時間','無駄時間','基本時間'],
+                                        datasets: [{
+                                            data: chartVal, 
+                                            backgroundColor: ['#007bff', '#ffc107','#dc3545','#28a745']
+                                            }],
+                                        }
+                                        });
+                                        }
+                                </script>
+                                <div  class="table">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col"class="text-primary">努力&emsp;時間</th><th scope="col" class="text-warning ">遊び&emsp;時間</th><th scope="col" class="text-danger">無駄&emsp;時間</th><th scope="col" class="text-success">基本&emsp;時間</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td scope="col" class="text-primary">{{ sum_doryoku }}時間</td><td scope="col" class="text-warning">{{ sum_asobi}}時間</td><td scope="col" class="text-danger">{{ sum_muda}}時間</td><td scope="col" class="text-success">{{ sum_kihon}}時間</td>
+                                            </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="panelsStayOpen-headingThree">
+                            <button class="accordion-button collapsed fs-4 fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+                                <div>使い方</div>
+                            </button>
+                        </h2>
+                        <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
+                            <div class="accordion-body container">
+                                <div>
+                                1日の24時間を、<div class="text-start">「勉強や運動、仕事など頑張った努力時間」</div><div class="text-start"></div>「趣味や友人との時間に使った遊び時間」
+                                <div class="text-start">「ダラダラしてしまったり、後で後悔するような無駄時間」</div><div class="text-start">「食事や睡眠やお風呂などの生活に使った基本時間」</div>この4つに、ボタンを押すだけで楽に２４時間を仕訳をして、分析することが出来る<div class="text-start">Webアプリケーションです。</div><p></p>
+                                <div class="text-start">改めて、日々の生活を振り返ってみることで、</div>自分自信では気づけていなかった無駄な時間を見つけられるかも!趣味も遊びも両立したい人におすすめ!</div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>  
-            <div class="box2 col-md-1 col-xs-12">&emsp;</div>
-            <div class="box3 col-md-4 col-xs-12 mt-1 border-top border-start p-1 border-info border-4 rounded fw-bold">
-            <h2 class="border-bottom border-info border-4 rounded">・みんなの記録</h2>
-            <div class="text-start fs-6"><p></p>このアプリを使っているみんなの<div class="text-start fs-6">記録や投稿を見ることが出来ます!</div><div class="text-start fs-6">みんなの頑張っている記録を見れば</div><div class="text-start fs-6">モチベーションも上がるかも！</div>あなたも記録をツイートして仕訳仲間を増やそう！</div>
-            {% for url_result in url_list%}
-                <blockquote class="twitter-tweet">
-                    <a href={{ url_result }}></a>
-                </blockquote>
-            {% endfor %}
             </div>
+        </div> 
+        <div class="box2 col-md-1 col-xs-12">&emsp;</div>
+        <div class="box3 col-md-4 col-xs-12 mt-1 border-top border-start p-1 border-info border-4 rounded fw-bold">
+        <h2 class="border-bottom border-info border-4 rounded">・みんなの記録</h2>
+        <div class="text-start fs-6"><p></p>このアプリを使っているみんなの<div class="text-start fs-6">記録や投稿を見ることが出来ます!</div><div class="text-start fs-6">みんなの頑張っている記録を見れば</div><div class="text-start fs-6">モチベーションも上がるかも！</div>あなたも記録をツイートして仕訳仲間を増やそう！</div>
+        {% for url_result in url_list%}
+            <blockquote class="twitter-tweet">
+                <a href={{ url_result }}></a>
+            </blockquote>
+        {% endfor %}
         </div>
     </div>
+</div>
 {% endif %}
 </body>
 {% endblock %}

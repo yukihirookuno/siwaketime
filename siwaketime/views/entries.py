@@ -1,6 +1,6 @@
-from flask import request, redirect, url_for,render_template,flash,session,make_response,jsonify
+from flask import request, redirect, url_for,render_template,flash,session
 from flask import current_app as app
-from siwaketime import db
+from siwaketime.myapp.app import db
 from siwaketime.config import db_session, engine,api_key,api_secret_key,access_token,access_token_secret,bearer_token
 from siwaketime.models.entries.entries import Entry
 from siwaketime.models.users import User
@@ -18,6 +18,7 @@ entry = Blueprint('entry', __name__)
 doryoku_counts = 0
 asobi_counts = 0
 muda_counts = 0
+kihon_counts = 0
 
 
 def count_genre(genre):    
@@ -30,6 +31,10 @@ def count_genre(genre):
     if genre == '無駄時間':
         global muda_counts
         muda_counts += 1
+    if genre == '基本時間':
+        global kihon_counts
+        kihon_counts +=1
+        
 
 def count_reset():
     global doryoku_counts
@@ -38,6 +43,8 @@ def count_reset():
     asobi_counts = 0
     global muda_counts
     muda_counts = 0
+    global kihon_counts
+    kihon_counts = 0
 
 
 def search_tweets():
@@ -78,11 +85,36 @@ def show_entries():
             Genre_count, Entry.entry_id==Genre_count.genre_counts_id
         ).filter(Entry.user_id==user_id, Entry.date==search_date
         ).all()
+    sum_doryoku = db_session.query(func.sum(Genre_count.doryoku_count)).filter(Genre_count.username==username).all()
+    tmp_sum_doryoku =sum_doryoku[0]
+    convert_sum_doryoku=tmp_sum_doryoku[0]
+    if convert_sum_doryoku==None:
+        convert_sum_doryoku=0
+
+    sum_asobi = db_session.query(func.sum(Genre_count.asobi_count)).filter(Genre_count.username==username).all()
+    tmp_sum_asobi =sum_asobi[0]
+    convert_sum_asobi=tmp_sum_asobi[0]
+    if convert_sum_asobi==None:
+        convert_sum_asobi=0
+
+    sum_muda= db_session.query(func.sum(Genre_count.muda_count)).filter(Genre_count.username==username).all()
+    tmp_sum_muda =sum_muda[0]
+    convert_sum_muda=tmp_sum_muda[0]
+    if convert_sum_muda==None:
+        convert_sum_muda=0
+    
+    sum_kihon = db_session.query(func.sum(Genre_count.kihon_count)).filter(Genre_count.username==username).all()
+    tmp_sum_kihon =sum_kihon[0]
+    convert_sum_kihon=tmp_sum_kihon[0]
+    if convert_sum_kihon==None:
+        convert_sum_kihon=0
+
+
     tweet_url_list=search_tweets()
     if session['check_recorded'] == 'ok':
         for entry in entries:
-            return render_template('entries/index.html',entry=entry, search_date=search_date,username=username,url_list=tweet_url_list) 
-    else: return render_template('entries/index.html',entry=entry,search_date=search_date,username=username,url_list=tweet_url_list)
+            return render_template('entries/index.html',entry=entry,sum_doryoku=convert_sum_doryoku,sum_asobi=convert_sum_asobi,sum_muda=convert_sum_muda,sum_kihon=convert_sum_kihon,search_date=search_date,username=username,url_list=tweet_url_list) 
+    else: return render_template('entries/index.html',entry=entry,sum_doryoku=convert_sum_doryoku,sum_asobi=convert_sum_asobi,sum_muda=convert_sum_muda,sum_kihon=convert_sum_kihon,search_date=search_date,username=username,url_list=tweet_url_list)
 
 
 
@@ -123,6 +155,8 @@ def add_entry():
         input_asobi_count = asobi_counts
         global muda_counts
         input_muda_count = muda_counts
+        global kihon_counts
+        input_kihon_count = kihon_counts
         input_date = request.form['date']
         date_check = db_session.query(Entry.date
             ).filter(Entry.user_id==entry_user_id, Entry.date == input_date
@@ -190,9 +224,11 @@ def add_entry():
         title.title_pm11 =request.form['title_pm11']
 
         genre_count = Genre_count()
-        genre_count.gannbari_count = input_doryoku_count
+        genre_count.doryoku_count = input_doryoku_count
         genre_count.asobi_count = input_asobi_count
         genre_count.muda_count = input_muda_count
+        genre_count.kihon_count = input_kihon_count
+        genre_count.username = entry_username
 
         db_session.add(entry)
         db_session.add(genre)
@@ -274,6 +310,8 @@ def update_entry(id):
     input_asobi_count = asobi_counts
     global muda_counts
     input_muda_count = muda_counts
+    global kihon_counts
+    input_kihon_count = kihon_counts
 
     entry.text = request.form['text']
     entry.user_id = entry_user_id
@@ -329,9 +367,11 @@ def update_entry(id):
     title.title_pm10 =request.form['title_pm10']
     title.title_pm11 =request.form['title_pm11']
 
-    genre_count.gannbari_count = input_doryoku_count
+    genre_count.doryoku_count = input_doryoku_count
     genre_count.asobi_count = input_asobi_count
     genre_count.muda_count = input_muda_count
+    genre_count.kihon_count = input_kihon_count
+    genre_count.username = entry_username
 
     db_session.merge(entry)
     db_session.merge(genre)
