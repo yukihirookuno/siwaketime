@@ -1,13 +1,13 @@
 from flask import request, redirect, url_for,render_template,flash,session
 from flask import current_app as app
-from siwaketime.app import db
-from siwaketime.config import db_session, engine,api_key,api_secret_key,access_token,access_token_secret,bearer_token
-from siwaketime.models.entries.entries import Entry
-from siwaketime.models.users import User
-from siwaketime.models.entries.genre_count import Genre_count
-from siwaketime.models.entries.genres import Genre
-from siwaketime.models.entries.titles import Title
-from siwaketime.views.users import login_required
+from __init__ import db
+from app.config import db_session, engine,api_key,api_secret_key,access_token,access_token_secret,bearer_token
+from app.models.entries.entries import Entry
+from app.models.users import User
+from app.models.entries.genre_count import Genre_count
+from app.models.entries.genres import Genre
+from app.models.entries.titles import Title
+from app.views.users import login_required
 from sqlalchemy import func
 import tweepy
 from flask import Blueprint

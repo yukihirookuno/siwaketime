@@ -1,5 +1,5 @@
-from siwaketime.app import db
-from siwaketime.config import Base 
+from __init__ import db
+from app.config import Base 
 
 class Genre_count(Base):
     __tablename__ = 'genre_counts'

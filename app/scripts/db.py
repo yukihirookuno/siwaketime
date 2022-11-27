@@ -1,7 +1,7 @@
 from flask_script import Command
-from siwaketime.app import db
-from siwaketime.config import engine
-from siwaketime.config import Base
+from __init__ import db
+from app.config import engine
+from app.config import Base
 
 class InitDB(Command):
     "データベースの作成"
