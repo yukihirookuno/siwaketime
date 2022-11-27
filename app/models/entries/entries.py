@@ -1,5 +1,5 @@
-from siwaketime.app import db
-from siwaketime.config import engine, Base 
+from app.__init__ import db
+from app.config import engine, Base 
 
 class Entry(Base):
     __tablename__ = 'entries'

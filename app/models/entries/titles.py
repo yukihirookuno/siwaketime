@@ -1,5 +1,5 @@
-from siwaketime.app import db
-from siwaketime.config import Base 
+from app.__init__ import db
+from app.config import Base 
 
 class Title(Base):
     __tablename__ = 'titles'

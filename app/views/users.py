@@ -1,8 +1,8 @@
 from flask import request, redirect, url_for, render_template, flash, session
 from flask import current_app as app
-from siwaketime.app import db
-from siwaketime.config import db_session
-from siwaketime.models.users import User
+from app.__init__ import db
+from app.config import db_session
+from app.models.users import User
 from functools import wraps
 from werkzeug.security import check_password_hash, generate_password_hash
 from flask import Blueprint
@@ -33,7 +33,7 @@ def signup():
         if not password:
             flash('パスワードを入力してください')
             return redirect(url_for('user.signup'))
-        if len(password) <= 9:
+        if len(password) < 8:
             flash('パスワードは８文字以上で入力してください')
             return redirect(url_for('user.signup'))
         confirmation = request.form.get("confirmation")
