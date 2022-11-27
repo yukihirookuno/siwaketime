@@ -4,7 +4,7 @@ import os
 
 db = SQLAlchemy()
 
-def create_app():
+def create_app(self):
     app = Flask(__name__)
     app.config.from_object('app.config')
 
