@@ -1,15 +1,14 @@
 from flask import request, redirect, url_for, render_template, flash, session
-from flask import current_app as app
-from app.__init__ import db
+from app.__init__ import db,app
 from app.config import db_session
 from app.models.users import User
 from functools import wraps
 from werkzeug.security import check_password_hash, generate_password_hash
 from flask import Blueprint
 from datetime import date
+from app.__init__ import user
 
-
-user = Blueprint('user', __name__)
+#user = Blueprint('user', __name__)
 
 
 def login_required(view):

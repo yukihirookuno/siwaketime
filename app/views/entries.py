@@ -1,6 +1,5 @@
 from flask import request, redirect, url_for,render_template,flash,session
-from flask import current_app as app
-from app.__init__ import db
+from app.__init__ import db ,app
 from app.config import db_session, engine,api_key,api_secret_key,access_token,access_token_secret,bearer_token
 from app.models.entries.entries import Entry
 from app.models.users import User
@@ -12,8 +11,9 @@ from sqlalchemy import func
 import tweepy
 from flask import Blueprint
 
+from app.__init__ import entry
 
-entry = Blueprint('entry', __name__)
+
 
 doryoku_counts = 0
 asobi_counts = 0
