@@ -11,9 +11,9 @@ from sqlalchemy import func
 import tweepy
 from flask import Blueprint
 
-from app.__init__ import entry
 
-
+entry = Blueprint('entry', __name__)
+app.register_blueprint(entry)
 
 doryoku_counts = 0
 asobi_counts = 0

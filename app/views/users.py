@@ -6,9 +6,9 @@ from functools import wraps
 from werkzeug.security import check_password_hash, generate_password_hash
 from flask import Blueprint
 from datetime import date
-from app.__init__ import user
 
-#user = Blueprint('user', __name__)
+user = Blueprint('user', __name__)
+app.register_blueprint(user)
 
 
 def login_required(view):
