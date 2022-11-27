@@ -1,5 +1,5 @@
 from flask_script import Manager
-from __init__ import create_app
+from app.__init__ import create_app
 from app.models.entries.entries import Entry 
 from app.models.entries.genre_count import Genre_count
 from app.models.entries.genres import Genre
