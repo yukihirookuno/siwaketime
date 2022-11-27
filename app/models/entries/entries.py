@@ -1,4 +1,4 @@
-from __init__ import db
+from app.__init__ import db
 from app.config import engine, Base 
 
 class Entry(Base):

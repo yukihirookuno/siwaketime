@@ -1,5 +1,5 @@
 from flask_script import Command
-from __init__ import db
+from app.__init__ import db
 from app.config import engine
 from app.config import Base
 

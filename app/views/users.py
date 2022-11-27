@@ -1,6 +1,6 @@
 from flask import request, redirect, url_for, render_template, flash, session
 from flask import current_app as app
-from __init__ import db
+from app.__init__ import db
 from app.config import db_session
 from app.models.users import User
 from functools import wraps
@@ -33,7 +33,7 @@ def signup():
         if not password:
             flash('パスワードを入力してください')
             return redirect(url_for('user.signup'))
-        if len(password) <= 9:
+        if len(password) < 8:
             flash('パスワードは８文字以上で入力してください')
             return redirect(url_for('user.signup'))
         confirmation = request.form.get("confirmation")
