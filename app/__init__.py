@@ -20,6 +20,3 @@ def create_app():
     Base.metadata.create_all(engine)
 
     return app
-
-
-
