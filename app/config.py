@@ -38,7 +38,7 @@ load_dotenv(verbose=True)
 dotenv_path = join(dirname(__file__), ".env")
 
 FLASK_APP = os.environ.get('FLASK_APP')
-#FLASK_ENV = os.environ.get('FLASK_ENV')
+FLASK_ENV = os.environ.get('FLASK_ENV')
 
 
 api_key = os.environ.get('api_key')

@@ -8,8 +8,6 @@ def create_app():
     app = Flask(__name__)
     app.config.from_object('app.config')
 
-
-    
     db.init_app(app)
 
     from app.views.users import user
