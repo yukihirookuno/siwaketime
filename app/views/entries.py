@@ -1,5 +1,6 @@
 from flask import request, redirect, url_for,render_template,flash,session
-from app.__init__ import db ,app
+from app import db 
+from flask import current_app as app
 from app.config import db_session, engine,api_key,api_secret_key,access_token,access_token_secret,bearer_token
 from app.models.entries.entries import Entry
 from app.models.users import User
@@ -13,7 +14,7 @@ from flask import Blueprint
 
 
 entry = Blueprint('entry', __name__)
-app.register_blueprint(entry)
+
 
 doryoku_counts = 0
 asobi_counts = 0

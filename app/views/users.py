@@ -1,5 +1,6 @@
 from flask import request, redirect, url_for, render_template, flash, session
-from app.__init__ import db,app
+from app import db
+from flask import current_app as app
 from app.config import db_session
 from app.models.users import User
 from functools import wraps
@@ -8,7 +9,7 @@ from flask import Blueprint
 from datetime import date
 
 user = Blueprint('user', __name__)
-app.register_blueprint(user)
+
 
 
 def login_required(view):
